@@ -14,7 +14,7 @@ patrimonio_dep_fed <- basedosdados::read_sql(query)
 
 # Salvar ------------------------------------------------------------------
 saveRDS(patrimonio_dep_fed,
-        file = here::here("data", "clean", "patrimonio.rds"),
+        file = here::here("data", "raw", "patrimonio.rds"),
         compress = T)
 
 # Pacotes -----------------------------------------------------------------
