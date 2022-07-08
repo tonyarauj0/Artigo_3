@@ -20,7 +20,7 @@ fc_dep_fed_14 <- basedosdados::read_sql(query)
 
 # Salvar ------------------------------------------------------------------
 saveRDS(fc_dep_fed_14,
-        file = here::here("data", "clean", "financiamento.rds"),
+        file = here::here("data", "raw", "financiamento.rds"),
         compress = T)
 
 # Pacotes -----------------------------------------------------------------
