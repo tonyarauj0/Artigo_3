@@ -18,8 +18,12 @@ AND cargo = 'deputado federal'"
 # 1.3 Atribuindo a um data frame
 fc_dep_fed_14 <- basedosdados::read_sql(query)
 
-
+usethis::use_package("basedosdados")
 # Salvar ------------------------------------------------------------------
 saveRDS(fc_dep_fed_14,
         file = here::here("data", "clean", "financiamento.rds"),
         compress = T)
+
+# Pacotes -----------------------------------------------------------------
+usethis::use_package("basedosdados")
+usethis::use_package("pacman")
