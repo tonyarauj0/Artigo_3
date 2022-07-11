@@ -15,4 +15,4 @@ patrimonio_total <- patrimonio |>
 
 # 3. salvar ---------------------------------------------------------------
 
-saveRDS(patrimonio_total, file = here::here("data", "clean","patrimonio_agragado_deputados.rds"))
+saveRDS(patrimonio_total, file = here::here("data", "clean","patrimonio_agregado_deputados.rds"))
