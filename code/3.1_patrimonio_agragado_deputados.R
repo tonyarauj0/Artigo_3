@@ -9,7 +9,7 @@ patrimonio <- readRDS(file = here::here("data","raw","patrimonio.rds"))
 # 2 Somar valores por deputado --------------------------------------------
 
 patrimonio_total <- patrimonio |>
-    dplyr::group_by(id_candidato_bd) |>
+    dplyr::group_by(id_candidato_bd, sequencial_candidato) |>
     dplyr::summarise(patrimonio = sum(valor_item)) |>
     dplyr::ungroup()
 
