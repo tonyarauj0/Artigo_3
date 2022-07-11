@@ -76,7 +76,8 @@ saveRDS(df_votacoes_nominais.3,
         file = here::here("data", "clean", "votacoes_financiamento.rds"),
         compress = F)
 
-
+# Pacotes -----------------------------------------------------------------
+usethis::use_package("lubridate")
 
 # OBS: Outra forma de buscar temas e proposicoes----
 

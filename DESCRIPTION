@@ -18,6 +18,7 @@ Imports:
     here,
     httr,
     jsonlite,
+    lubridate,
     pacman,
     tibble,
     usethis
