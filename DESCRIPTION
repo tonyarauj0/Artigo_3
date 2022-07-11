@@ -12,12 +12,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
 Imports: 
     basedosdados,
+    congressbr (>= 0.2.2),
     dplyr,
     fs,
     here,
     httr,
     jsonlite,
     pacman,
-    tibble
+    tibble,
+    usethis
 URL: https://github.com/tonyarauj0/Artigo_3
 BugReports: https://github.com/tonyarauj0/Artigo_3/issues
+Remotes: 
+    RobertMyles/congressbr
