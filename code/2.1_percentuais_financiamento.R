@@ -34,5 +34,5 @@ financiamento.wide.1 <- financiamento.wide |>
                                          )))
 
 # salvar ------------------------------------------------------------------
-saveRDS(financiamento.wide.1, file = here::here("data","clean","perentuais_financiamento.rds"))
+saveRDS(financiamento.wide.1, file = here::here("data","clean","percentuais_financiamento.rds"))
 
