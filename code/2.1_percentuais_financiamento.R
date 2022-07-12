@@ -26,12 +26,9 @@ financiamento.wide$receita_total <- rowSums(financiamento.wide[5:13])
 
 financiamento.wide.1 <- financiamento.wide |>
     dplyr::mutate(dplyr::across(5:13,
-                                ~ format((.x/receita_total)*100,
-                                         big.mark = ".",
-                                         decimal.mark = ",",
-                                         digits  = 2,
-                                         scientific = F
-                                         )))
+                                ~ (.x/receita_total)*100
+                                )
+                  )
 
 # salvar ------------------------------------------------------------------
 saveRDS(financiamento.wide.1, file = here::here("data","clean","percentuais_financiamento.rds"))
