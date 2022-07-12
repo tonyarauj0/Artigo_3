@@ -24,7 +24,11 @@ financiamento.wide <- financiamento.1 |>
                   pol = recursos_de_partido_politico,
                   pf = recursos_de_pessoas_fisicas,
                   pj = recursos_de_pessoas_juridicas,
-                  prop = recursos_proprios
+                  prop = recursos_proprios,
+                  apf = rendimentos_de_aplicacoes_financeiras,
+                  ni = recursos_de_origens_nao_identificadas,
+                  net = doacoes_pela_internet,
+                  comerc = comercializacao_de_bens_ou_realizacao_de_eventos
                   )
 
 # 4. Criar total e percentuais ----------------------------------------------------------

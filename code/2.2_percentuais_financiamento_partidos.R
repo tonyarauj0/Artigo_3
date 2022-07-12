@@ -22,6 +22,9 @@ receitas_partidos.wide <- receitas_partidos.1 |>
                   p_pol = recursos_de_partido_politico,
                   p_pf = recursos_de_pessoas_fisicas,
                   p_pj = recursos_de_pessoas_juridicas,
+                  p_apf = rendimentos_de_aplicacoes_financeiras,
+                  p_ni = recursos_de_origens_nao_identificadas,
+                  p_net = doacoes_pela_internet
     )
 
 # 4. Criar total e percentuais ----------------------------------------------------------
