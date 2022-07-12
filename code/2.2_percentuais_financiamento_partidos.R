@@ -17,7 +17,12 @@ receitas_partidos.wide <- receitas_partidos.1 |>
     tidyr::pivot_wider(names_from = tipo_receita,
                        values_from = valor,
                        values_fill = 0) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::rename(p_cand = recursos_de_outros_candidatos_comites,
+                  p_pol = recursos_de_partido_politico,
+                  p_pf = recursos_de_pessoas_fisicas,
+                  p_pj = recursos_de_pessoas_juridicas,
+    )
 
 # 4. Criar total e percentuais ----------------------------------------------------------
 receitas_partidos.wide$rec_partido_total <- rowSums(receitas_partidos.wide[2:8])
