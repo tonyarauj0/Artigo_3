@@ -17,6 +17,7 @@ Imports:
     fs,
     here,
     httr,
+    janitor,
     jsonlite,
     lubridate,
     pacman,
