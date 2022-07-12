@@ -102,8 +102,10 @@ base.3 <- base.2 |>
 
 # 7. Criar novas variaveis de financiamento -------------------------------
 base.3 <- base.3 |>
-    mutate(diretos = per_pj + per_pf,
-           indiretos = per_pol + per_cand)
+    mutate(diretos = pj + pf,
+           indiretos = pol + cand,
+           per_diretos = per_pj + per_pf,
+           per_indiretos = per_pol + per_cand)
 
 # salvar ------------------------------------------------------------------
 saveRDS(base.3,
