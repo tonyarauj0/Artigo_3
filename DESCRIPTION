@@ -15,6 +15,7 @@ Imports:
     congressbr (>= 0.2.2),
     dplyr,
     fs,
+    glue,
     here,
     httr,
     janitor,
