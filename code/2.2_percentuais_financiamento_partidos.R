@@ -30,7 +30,7 @@ receitas_partidos.wide$rec_partido_total <- rowSums(receitas_partidos.wide[2:8])
 receitas_partidos.wide.1 <- receitas_partidos.wide |>
     dplyr::mutate(dplyr::across(2:8,
                                 ~ (.x/rec_partido_total)*100,
-                                .names = "per_ {.col}"
+                                .names = "per_{.col}"
                                     )
                   )
 

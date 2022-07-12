@@ -33,7 +33,7 @@ financiamento.wide$receita_total <- rowSums(financiamento.wide[5:13])
 financiamento.wide.1 <- financiamento.wide |>
     dplyr::mutate(dplyr::across(5:13,
                                 ~ (.x/receita_total)*100,
-                                .names = "per_ {.col}"
+                                .names = "per_{.col}"
                                 )
                   )
 
