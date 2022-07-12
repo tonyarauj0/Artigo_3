@@ -1,5 +1,5 @@
 # Criar algumas categorias de interesse na base de estimacao
-library(dplyr)
+library(tidyverse)
 
 
 # 1. Carregar base de dados -----------------------------------------------
@@ -14,7 +14,7 @@ base.1 <- base |> mutate_if(bit64::is.integer64, as.numeric)
 
 
 # 3. Criar categorias de interesse ----------------------------------------
-# 3.1 Mudou de parftido apos eleicao ----
+# 3.1 Mudou de partido apos eleicao ----
 base.2 <- base.1 |>
     mutate(
         mudou_partido = ifelse(deputado_sigla_partido == partido_eleicao,
@@ -70,14 +70,6 @@ base.2 <- base.2 |>
                              0)
     )
 
-# 3.6 renomear algumas vaeriaveis ----
-base.2 <- base.2 |>
-    rename(cand = recursos_de_outros_candidatos_comites,
-           pf = recursos_de_pessoas_fisicas,
-           pj = recursos_de_pessoas_juridicas,
-           prop = recursos_proprios,
-           part = recursos_de_partido_politico)
-
 
 # 4. Atualizar nomes dos partidos -----------------------------------------
 base.2 <- base.2 |>
@@ -110,8 +102,8 @@ base.3 <- base.2 |>
 
 # 7. Criar novas variaveis de financiamento -------------------------------
 base.3 <- base.3 |>
-    mutate(diretos = pj + pf,
-           indiretos = part + cand)
+    mutate(diretos = per_pj + per_pf,
+           indiretos = per_pol + per_cand)
 
 # salvar ------------------------------------------------------------------
 saveRDS(base.3,
