@@ -36,6 +36,10 @@ percentuais_financiamento <- readRDS(file = here::here("data",
                                                        "clean",
                                                        "percentuais_financiamento.rds"))
 
+# 5.1 Carregar financiamento dos partidos
+receita_partido <- readRDS(file = here::here("data",
+                                             "clean",
+                                             "receitas_partidos.rds"))
 
 # 6. Merge das bases ---------------------------------------------------------
 base_estimacao <- votos.1 |>  #votacao nominal
@@ -63,7 +67,10 @@ base_estimacao <- votos.1 |>  #votacao nominal
             dplyr::left_join(
                 votacao_obtida |>
                     dplyr::select(sequencial_candidato, votos, resultado)
-            ) #votos obtidos no momento da eleicao
+            ) |> #votos obtidos no momento da eleicao
+            dplyr::left_join(receita_partido |>
+                                 dplyr::rename(
+                                     partido_eleicao = sigla_partido)) #receitas do partido
     )
 
 
@@ -80,3 +87,4 @@ saveRDS(base_estimacao, file = here::here("data",
 
 #pacotes
 usethis::use_package("janitor")
+usethis::use_package("glue")
