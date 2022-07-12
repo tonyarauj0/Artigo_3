@@ -19,14 +19,21 @@ financiamento.wide <- financiamento.1 |>
     tidyr::pivot_wider(names_from = origem_receita,
                        values_from = total_doado,
                        values_fill = 0) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::rename(cand = recursos_de_outros_candidatos_comites,
+                  pol = recursos_de_partido_politico,
+                  pf = recursos_de_pessoas_fisicas,
+                  pj = recursos_de_pessoas_juridicas,
+                  prop = recursos_proprios
+                  )
 
 # 4. Criar total e percentuais ----------------------------------------------------------
 financiamento.wide$receita_total <- rowSums(financiamento.wide[5:13])
 
 financiamento.wide.1 <- financiamento.wide |>
     dplyr::mutate(dplyr::across(5:13,
-                                ~ (.x/receita_total)*100
+                                ~ (.x/receita_total)*100,
+                                .names = "per_ {.col}"
                                 )
                   )
 
