@@ -1,5 +1,5 @@
 # Preparar receitas dos partidos por tipo
-library(tiduverse)
+library(tidyverse)
 
 # 1. Importar os dados brutos ----------------------------------------------------
 receitas_partidos <- readxl::read_excel("data/raw/receitas_partidos_2014_brasil.xlsx")
