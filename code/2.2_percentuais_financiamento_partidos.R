@@ -37,5 +37,20 @@ receitas_partidos.wide.1 <- receitas_partidos.wide |>
                                     )
                   )
 
+
+# 5. Atulizar nomes dos partidos ------------------------------------------
+
+receitas_partidos.wide.1 <- receitas_partidos.wide.1 |>
+    dplyr::mutate(sigla_partido = dplyr::case_when(
+        sigla_partido == "PT do B" ~ "AVANTE",
+        sigla_partido == "PATRIOTA" ~ "PEN",
+        sigla_partido == "SOLIDARIEDADE" ~ "SD",
+        sigla_partido == "PODE" ~ "PTN",
+        TRUE ~ sigla_partido
+
+    ))
+
+
+
 # salvar ------------------------------------------------------------------
 saveRDS(receitas_partidos.wide.1, file = here::here("data","clean","receitas_partidos.rds"))
