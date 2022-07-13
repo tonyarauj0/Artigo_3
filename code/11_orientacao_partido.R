@@ -81,6 +81,12 @@ orientacao_partido <- votacoes_financiamento_pec182.1 |>
                 "orientacao_x2turno"
         )
     ) |>
+    # Modificar nomes das orientacoes para ser compativel c deputados
+    dplyr::mutate(orientacao = dplyr::case_when(
+        orientacao == "Nao" ~ "Não",
+        orientacao == "Abstencao" ~ "Abstenção",
+        TRUE ~ orientacao
+    )) |>
     dplyr::select(votacao, sigla, orientacao) |>
     tidyr::pivot_wider(names_from = votacao,
                        values_from = orientacao)
