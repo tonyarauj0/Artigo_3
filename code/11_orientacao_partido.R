@@ -48,7 +48,7 @@ votacoes_financiamento_pec182 <- votacoes_pec_182 |>
             "PMDB/PP/PTB/PSC/PHS/PEN",
         partido == "ReprPSOL" ~ "PSOL",
         partido == "Solidaried" ~ "SD" ,
-        partido == "PCdoB" ~ "PC do B",
+        partido == "PC do B" ~ "PCdoB",
         TRUE ~ partido))
 
 
