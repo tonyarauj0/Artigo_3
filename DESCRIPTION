@@ -20,6 +20,7 @@ Imports:
     glue,
     here,
     httr,
+    introdataviz (>= 0.0.0.9003),
     janitor,
     jsonlite,
     lubridate,
@@ -30,5 +31,6 @@ Imports:
     vip
 URL: https://github.com/tonyarauj0/Artigo_3
 BugReports: https://github.com/tonyarauj0/Artigo_3/issues
-Remotes: 
-    RobertMyles/congressbr
+Remotes:  
+    RobertMyles/congressbr,
+    psyteachr/introdataviz
