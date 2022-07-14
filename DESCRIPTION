@@ -12,7 +12,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
 Imports: 
     basedosdados,
+    broom,
     congressbr (>= 0.2.2),
+    dials,
     doParallel,
     dplyr,
     fs,
@@ -21,24 +23,33 @@ Imports:
     glue,
     here,
     httr,
+    infer,
     introdataviz (>= 0.0.0.9003),
     janitor,
     jsonlite,
     lubridate,
+    modeldata,
     pacman,
+    parsnip,
     patchwork,
     raster,
     rasterVis,
+    recipes,
     rgdal,
+    rsample,
     sf,
     tibble,
     tmap,
     tmaptools,
+    tune,
     usethis,
-    vip
+    vip,
+    workflows,
+    workflowsets,
+    yardstick
 URL: https://github.com/tonyarauj0/Artigo_3
 BugReports: https://github.com/tonyarauj0/Artigo_3/issues
-Remotes:  
+Remotes: 
     RobertMyles/congressbr,
     psyteachr/introdataviz,
     ipeaGIT/geobr
