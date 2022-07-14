@@ -16,6 +16,7 @@ Imports:
     doParallel,
     dplyr,
     fs,
+    geobr,
     glmnet,
     glue,
     here,
@@ -26,11 +27,17 @@ Imports:
     lubridate,
     pacman,
     patchwork,
+    raster,
+    rasterVis,
+    rgdal,
+    sf,
     tibble,
+    tmap,
+    tmaptools,
     usethis,
     vip
 URL: https://github.com/tonyarauj0/Artigo_3
 BugReports: https://github.com/tonyarauj0/Artigo_3/issues
-Remotes:  
+Remotes: 
     RobertMyles/congressbr,
     psyteachr/introdataviz
