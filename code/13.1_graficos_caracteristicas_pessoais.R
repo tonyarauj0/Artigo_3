@@ -26,7 +26,7 @@ base <- dados |>
      geom_label(aes(label = n), size = 5,color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "") +
+     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -61,7 +61,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n),color = "white", size = 5, show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "") +
+     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -99,7 +99,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n), color = "white", size = 5, show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "") +
+     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -138,7 +138,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n), size = 5,color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "") +
+     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -238,3 +238,13 @@ ggplot2::ggsave(
     width = 15,
     height = 6
 )
+
+
+# # Juntar os gráficos ------------------------------------------------------
+# library(patchwork)
+# barras_ocupacao +
+#     barras_estado_civil +
+#     barras_instrucao +
+#     # barras_raca +
+#     barras_regiao +
+#     plot_layout(ncol = 1)
