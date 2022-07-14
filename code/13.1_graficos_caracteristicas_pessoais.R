@@ -26,7 +26,7 @@ base <- dados |>
      geom_label(aes(label = n), size = 5,color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
+     labs(x = "", y = "", caption = "Nota: Valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -61,7 +61,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n),color = "white", size = 5, show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
+     labs(x = "", y = "", caption = "Nota: Valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -99,7 +99,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n), color = "white", size = 5, show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
+     labs(x = "", y = "", caption = "Nota: Valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -138,7 +138,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n), size = 5,color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
+     labs(x = "", y = "", caption = "Nota: Valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
@@ -178,7 +178,7 @@ ggplot2::ggsave(
         geom_label(aes(label = n), size = 5, color = "white", show.legend = F) +
         tidytext::scale_y_reordered() +
         facet_wrap(~ema22, scales = "free") +
-        labs(x = "%", y = "", caption = "Nota: valores absolutos dentro das barras") +
+        labs(x = "%", y = "", caption = "Nota: Valores absolutos dentro das barras") +
         scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
         theme_minimal() +
         theme(plot.caption.position = "plot",
@@ -217,7 +217,7 @@ ggplot2::ggsave(
      geom_label(aes(label = n), size = 5, color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
-     labs(x = "", y = "", caption = "Nota: valores absolutos dentro das barras.") +
+     labs(x = "", y = "", caption = "Nota: Valores absolutos dentro das barras.") +
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
