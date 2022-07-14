@@ -16,7 +16,7 @@ Imports:
     doParallel,
     dplyr,
     fs,
-    geobr,
+    geobr (>= 1.6.5999),
     glmnet,
     glue,
     here,
@@ -38,6 +38,7 @@ Imports:
     vip
 URL: https://github.com/tonyarauj0/Artigo_3
 BugReports: https://github.com/tonyarauj0/Artigo_3/issues
-Remotes: 
+Remotes:  
     RobertMyles/congressbr,
-    psyteachr/introdataviz
+    psyteachr/introdataviz,
+    ipeaGIT/geobr
