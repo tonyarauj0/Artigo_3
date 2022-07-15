@@ -57,7 +57,6 @@ base <- base |>
     mutate_if(is.character, as.factor)
 
 
-
 # 3. Separando amostra -----------------------------------------------------
 
 base_split <- initial_split(base, strata = ema22)
@@ -71,7 +70,9 @@ base_test <- testing(base_split)
 
 base_rec <- recipe(ema22 ~ ., data = base_train) |>
     step_dummy(all_nominal_predictors()) |>
-    step_log(pf, pj, prop, cand, pol, receita_total)
+    step_log(pf, pj, prop, cand, pol, receita_total) |>
+    step_impute_knn(all_predictors())
+
 
 
 
@@ -92,7 +93,7 @@ wf  <- workflow() |>
 val_set <- vfold_cv(base_train, v = 4, strata = ema22)
 
 # 7.2 Treino
-set.seed(1)
+set.seed(1234)
 reg_trainned <- wf |>
     tune_grid(
         val_set,
@@ -103,11 +104,50 @@ reg_trainned <- wf |>
 
 
 # 8. Avaliando modelo ---------------------------------------------------
-
 reg_trainned |> show_best(n = 10)
 
 
-# 8.1 Penalizacao
+# 8.1 Montar tabela -----
+# Configuracao Tabelas
+flextable::set_flextable_defaults(
+    font.family = "Times New Roman",
+    font.size = 12,
+    font.color = "black",
+    big.mark = ".",
+    decimal.mark = ",",
+    border.color = "black",
+    digits = 2,
+    table.layout = "autofit"
+)
+
+# Tabela
+tabela_tunning <-
+reg_trainned |> show_best(n = 10) |>
+    select(penalty, mixture, mean, std_err) |>
+    mutate(across(where(is.numeric), ~ format(.x,
+                                       digits = 2,
+                                       decimal.mark = ",",
+                                       scientific = T))) |>
+    flextable::flextable() |>
+    flextable::fontsize(part = "footer", size = 10) |>
+    flextable::align(align = "left", part = "body") |>
+    flextable::align(align = "center", part = "header") |>
+    flextable::hline_top(border = officer::fp_border(width = 1),
+                         part = "all") |>
+    flextable::hline_bottom(border = officer::fp_border(width = 1),
+                            part = "all") |>
+    flextable::set_header_labels(penalty = "Lambda",
+                                 mixture = "Alpha",
+                                 mean = "Média",
+                                 std_err = "Desvio\nPadrão"
+    )
+
+saveRDS(tabela_tunning, file = here::here("tables", "tabela_tunning.rds"))
+
+
+
+# 8.1 Penalizacao ----
+(gr_penalizacao <-
 reg_trainned  |>
     collect_metrics()  |>
     ggplot(aes(penalty, mean)) +
@@ -118,14 +158,30 @@ reg_trainned  |>
     alpha = 0.5
     ) +
     geom_line(size = 1.5, show.legend = F) +
-    # facet_wrap(~.metric, scales = "free", nrow = 2) +
+    scale_y_continuous(labels = function(x) format(x,
+                                                   big.mark = ".",
+                                                   decimal.mark = ",",
+                                                   scientific = FALSE)) +
     scale_x_log10() +
-    theme(legend.position = "none") +
     theme_minimal() +
-    labs(x = "Penalização", y = "Média")
+    theme(legend.position = "none",
+          panel.border = element_blank(),
+          # panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()
+          ) +
+    labs(x = expression(lambda), y = "Média")
+)
+
+ggplot2::ggsave(
+    filename = here::here("figures", "resultados", "ml", "penalizacao.png"),
+    plot = gr_penalizacao ,
+    dpi = 600,
+    width = 8,
+    height = 6
+)
 
 
-# 8.2 Mixture
+# 8.2 Mixture ----
 reg_trainned  |>
     collect_metrics()  |>
     ggplot(aes(mixture, mean)) +
@@ -163,19 +219,50 @@ final_reg_model_mod2 <- reg_mod |> finalize_model(lowest_rmse)
 # 9.4 Grafico variaveis importantes ----
 library(vip)
 
+
 final_reg_model_mod1 |>
     fit(base_train)  |>
     extract_fit_parsnip()  |>
     vi(lambda = lowest_rmse$penalty)  |>
     head(15) |>
+    mutate(Variable = case_when(
+        Variable == "dim1" ~ "Ideologia",
+        Variable == "or_contra_ema22" ~ "Orientação Contra",
+        Variable == "masculino" ~ "Sexo M",
+        Variable == "regiao_Norte" ~ "Norte",
+        Variable == "branco" ~ "Branco",
+        Variable == "superior" ~ "Superior",
+        Variable == "regiao_Sudeste" ~ "Sudeste",
+        Variable == "receita_total" ~ "Rec.Totais",
+        Variable == "regiao_Sul" ~ "Sul",
+        Variable == "mudou_partido" ~ "Mudou Partido",
+        Variable == "suplente" ~ "Suplente",
+        Variable == "pf" ~ "Rec.PF",
+        Variable == "prop" ~ "Rec.Próprios",
+        Variable == "casado" ~ "Casado",
+        Variable == "pol" ~ "Rec.Partido"
+    )) |>
     mutate(
-        Importância = abs(Importance),
-        Variável = forcats::fct_reorder(Variable, Importance)
+        Importance = abs(Importance),
+        Variable = forcats::fct_reorder(Variable, Importance)
     )  |>
-    ggplot(aes(x = Importância, y = Variável, fill = Sign)) +
+
+    ggplot(aes(x = Importance,
+               y = Variable,
+               fill = Sign)) +
     geom_col() +
-    scale_x_continuous(expand = c(0, 0)) +
-    labs(y = NULL, fill = "Sinal")
+    scale_x_continuous(expand = c(0, 0),
+                       labels = function(x) format(x,
+                                                   big.mark = ".",
+                                                   decimal.mark = ",",
+                                                   scientific = FALSE)) +
+    labs(y = NULL, fill = "Sinal", x = "Importância") +
+    scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
+    theme_minimal() +
+    theme(panel.border = element_blank(),
+          # panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()
+    )
 
 
 # 10. Estimando melhor modelo na base de treino ---------------------------
