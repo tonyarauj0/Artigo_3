@@ -17,6 +17,7 @@ Imports:
     dials,
     doParallel,
     dplyr,
+    flextable,
     forcats,
     fs,
     geobr (>= 1.6.5999),
