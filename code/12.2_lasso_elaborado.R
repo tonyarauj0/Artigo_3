@@ -219,7 +219,7 @@ final_reg_model_mod2 <- reg_mod |> finalize_model(lowest_rmse)
 # 9.4 Grafico variaveis importantes ----
 library(vip)
 
-
+var_importantes <-
 final_reg_model_mod1 |>
     fit(base_train)  |>
     extract_fit_parsnip()  |>
@@ -265,6 +265,16 @@ final_reg_model_mod1 |>
           # panel.grid.major = element_blank(),
           panel.grid.minor = element_blank()
     )
+
+# Salvar
+ggplot2::ggsave(
+    filename = here::here("figures", "resultados", "ml", "var_importantes.png"),
+    plot = var_importantes ,
+    dpi = 600,
+    width = 8,
+    height = 6
+)
+
 
 
 # 10. Estimando melhor modelo na base de treino ---------------------------
