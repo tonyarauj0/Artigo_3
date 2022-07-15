@@ -26,17 +26,17 @@ base <- base |>
 base <- base |>
     select(
         c(dim1,
-          pj,
-          pf,
-          prop,
-          pol,
-          cand,
+          # pj,
+          # pf,
+          # prop,
+          # pol,
+          # cand,
           # patrimonio,
           per_pj,
           per_pf,
           per_prop,
           per_pol,
-          per_cand,
+          # per_cand,
           regiao,
           # mudou_partido,
           # nm_atual_partido,
@@ -52,7 +52,7 @@ base <- base |>
           branco,
           ema22,
           or_contra_ema22,
-          receita_total
+          # receita_total
         )) |>
     mutate_if(is.character, as.factor)
 
@@ -70,10 +70,8 @@ base_test <- testing(base_split)
 
 base_rec <- recipe(ema22 ~ ., data = base_train) |>
     step_dummy(all_nominal_predictors()) |>
-    step_log(pf, pj, prop, cand, pol, receita_total) |>
+    # step_log(pf, pj, prop, cand, pol, receita_total) |>
     step_impute_knn(all_predictors())
-
-
 
 
 # 5. Modelo ---------------------------------------------------------------
@@ -219,7 +217,7 @@ final_reg_model_mod2 <- reg_mod |> finalize_model(lowest_rmse)
 # 9.4 Grafico variaveis importantes ----
 library(vip)
 
-var_importantes <-
+(var_importantes <-
 final_reg_model_mod1 |>
     fit(base_train)  |>
     extract_fit_parsnip()  |>
@@ -228,21 +226,21 @@ final_reg_model_mod1 |>
     mutate(Variable = case_when(
         Variable == "dim1" ~ "Ideologia",
         Variable == "or_contra_ema22" ~ "Orientação Contra",
-        # Variable == "masculino" ~ "Sexo M",
         Variable == "regiao_Norte" ~ "Norte",
         Variable == "regiao_Nordeste" ~ "Nordeste",
         Variable == "branco" ~ "Branco",
-        Variable == "superior" ~ "Superior",
+        Variable == "superior" ~ "Ens.Superior",
         Variable == "regiao_Sudeste" ~ "Sudeste",
         Variable == "receita_total" ~ "Rec.Totais",
         Variable == "regiao_Sul" ~ "Sul",
-        Variable == "mudou_partido" ~ "Mudou Partido",
+        Variable == "governo_Oposição" ~ "Oposição",
         Variable == "politico" ~ "Político",
-        Variable == "pf" ~ "Rec.PF",
-        Variable == "pj" ~ "Rec.PJ",
-        Variable == "prop" ~ "Rec.Próprios",
+        Variable == "per_pf" ~ "Rec.PF",
+        Variable == "per_pj" ~ "Rec.PJ",
+        Variable == "per_prop" ~ "Rec.Próprios",
         Variable == "casado" ~ "Casado",
-        Variable == "pol" ~ "Rec.Partido"
+        Variable == "per_pol" ~ "Rec.Partido",
+        Variable == "votos" ~ "Votos"
     )) |>
     mutate(
         Importance = abs(Importance),
@@ -265,7 +263,7 @@ final_reg_model_mod1 |>
           # panel.grid.major = element_blank(),
           panel.grid.minor = element_blank()
     )
-
+)
 # Salvar
 ggplot2::ggsave(
     filename = here::here("figures", "resultados", "ml", "var_importantes.png"),
