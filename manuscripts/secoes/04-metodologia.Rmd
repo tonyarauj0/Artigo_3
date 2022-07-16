@@ -59,4 +59,6 @@ $$Min\frac{1}{2N} \sum_{i=1}^{N}(y_i-\beta_0-x_i^T\beta)^2 +
 
 Onde $\lambda\geq0$ é o hiperparâmetro de penalização e $0\geq\alpha\geq1$ é o hiperparâmetro de mistura entre os métodos *Ridge* ($\alpha=0$) ou *Lasso* ($\alpha=1$). Seus valores são escolhidos pelo pesquisador. Além disso, $x_i$ representa as variáveis explicativas, $y_i$ a variável resposta e $i = 1, ..., N$. Por fim, $||\beta||_2 = \sum_{j=1}^p|\beta_j^2|$ e $|\beta|_1 = \sum_{j=1}^p|\beta_j|$.
 
-Voltando ao método de validação cruzada, buscou-se um conjunto de combinações entre $\alpha$ e $\beta$ que alcançasse a melhor média entre, as *k* subamostras, da métrica de avaliação do modelo. Como o intuito desta pesquisa não é previsão, definiu-se como métrica o erro quadrático médio (EQM). 
+Voltando ao método de validação cruzada, buscou-se um conjunto de combinações entre $\alpha$ e $\beta$ que alcançasse a melhor média entre, as *k* subamostras, da métrica de avaliação do modelo. Como o intuito desta pesquisa não é previsão, definiu-se como métrica o erro quadrático médio (EQM). Uma vez escolhidos os melhores hiperparametros, estimou-se o modelo no conjunto de teste, onde foram extraídas as variáveis mais importantes, a partir do valor dos parametros estimados e padronizados.
+
+Além do método de ML, empregou-se uma regressão logarítimica usual. como será visto, o valor de $\lambda$ encontrado foi próximo de zero, permitindo que fosse realizado uma regressão clássica.
