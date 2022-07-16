@@ -514,24 +514,36 @@ modelo. Cada método de estimação tem um conjunto de hiperparâmtros a
 serem definidos pelo pesquisador. Nesta pesquisa, o <em>k</em> escolhido
 foi igual a 4. Dessa forma, separou-se a primeira parte (<span class="math inline">\(k_1\)</span>) e juntaram-se as demais (<span class="math inline">\(k_2\)</span> + <span class="math inline">\(k_3\)</span>+ <span class="math inline">\(k_4\)</span> ) onde o modelo foi estimado. Com
 base nos parametros obtidos, testou-se a previsão do modelo em <span class="math inline">\(k_1\)</span>. Isso é feito até que todas as
-subamostras sejam utilizadas como teste. Depois, associado cada
+subamostras sejam utilizadas como teste. Depois, associado a cada
 combinação de hiperparamtros, calcula-se uma medida de qualidade média
 para as <em>k</em> subamostras.</p>
 <p>O algoritmo de ML utilizado nesta pesquisa é uma generalização dos
 mínimos quadrados ordinários, onde é aplicada uma penalização ao número
 de coeficientes angulares estimados. Portanto, é feita a seguinte
 minimização:</p>
-<p><span class="math display">\[min_{a}\frac{1}{2N}
+<p><span class="math display">\[Min\frac{1}{2N}
 \sum_{i=1}^{N}(y_i-\beta_0-x_i^T\beta)^2 +
-\lambda[(1-\alpha)||\beta||_2 + \alpha|\beta|_1]\]</span></p>
+\lambda[(1-\alpha)||\beta||_2^2 + \alpha||\beta||_1]\]</span></p>
 <p><br></p>
 <p>Onde <span class="math inline">\(\lambda\geq0\)</span> é o
 hiperparâmetro de penalização e <span class="math inline">\(0\geq\alpha\geq1\)</span> é o hiperparâmetro de
 mistura entre os métodos <em>Ridge</em> (<span class="math inline">\(\alpha=0\)</span>) ou <em>Lasso</em> (<span class="math inline">\(\alpha=1\)</span>). Seus valores são escolhidos
 pelo pesquisador. Além disso, <span class="math inline">\(x_i\)</span>
-representa as variáveis explicativas, <span class="math inline">\(y_i\)</span> a variável resposta e <span class="math inline">\(i = 1, ..., N\)</span>. Por fim, <span class="math inline">\(||\beta||_2 = \sum_{j=1}^p\beta_j^2\)</span> e
+representa as variáveis explicativas, <span class="math inline">\(y_i\)</span> a variável resposta e <span class="math inline">\(i = 1, ..., N\)</span>. Por fim, <span class="math inline">\(||\beta||_2 = \sum_{j=1}^p|\beta_j^2|\)</span> e
 <span class="math inline">\(|\beta|_1 =
-\sum_{j=1}^p\beta_j^2\)</span></p>
+\sum_{j=1}^p|\beta_j|\)</span>.</p>
+<p>Voltando ao método de validação cruzada, buscou-se um conjunto de
+combinações entre <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span> que alcançasse a melhor média
+entre, as <em>k</em> subamostras, da métrica de avaliação do modelo.
+Como o intuito desta pesquisa não é previsão, definiu-se como métrica o
+erro quadrático médio (EQM). Uma vez escolhidos os melhores
+hiperparametros, estimou-se o modelo no conjunto de teste, onde foram
+extraídas as variáveis mais importantes, a partir do valor dos
+parametros estimados e padronizados.</p>
+<p>Além do método de ML, empregou-se uma regressão logarítimica usual.
+como será visto, o valor de <span class="math inline">\(\lambda\)</span>
+encontrado foi próximo de zero, permitindo que fosse realizado uma
+regressão clássica.</p>
 </div>
 </div>
 
