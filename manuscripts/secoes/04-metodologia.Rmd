@@ -1,75 +1,39 @@
 # Metodologia
 
-## Métodos de estimação
+Esta seção descreve o modelo econométrico estimado e os métodos escolhidos. Como já apresentado, outras EMA's trouxeram propostas de financiamento de camapanha eleitoral para a discussão da PEC 182/2007. A variável dependente considerada trata apenas dos votos contra ou a favor da EMA 22. Porém, vale destacar que 30 congressitas não participaram dessa votação e, no dia seguinte, votaram na EMA 32 e EMA 10.
 
-@poole1985spatial desenvolveram alguns métodos para estimação de pontos ideais que serão usados nesta pesquisa. O primeiro algoritmo criado é conhecido como NOMINATE. Nele, o erro aleatório é assumido como Logístico e a estimação dos pontos ideais consiste em três etapas que se repetem até que seja atingida uma convergência. Com base nessa versão inicial foram desenvolvidos os algoritmos D-NOMINATE e o W-NOMINATE, na década de 80. Enquanto este caracterizava-se pelos pesos, aquele possibilitava incorporar mais de uma legislatura. 
+## Modelo
 
-Nos anos 90, @mccarty1997income conceberam o DW-NOMINATE aliando os pesos e o fator dinâmico das metodologias anteriores. Além disso, os erros passaram a ter distribuição Gaussiana. Nesta pesquisa far-se-á o uso do W-NOMINATE. As etapas implementadas pelo algoritmo são descritas a seguir.
+Na tentativa de encontrar quais os fatores mais correlacionados com o voto dos Deputados foram elencadas algumas variáveis relacionadas as características pessoais, aos aspectos políticos e de financiamento de campanha dos parlamentares. Estimou-se o seguinte modelo linear.
 
-<br>
+$$EMA22 = (Pessoais) \boldsymbol \theta  + 
+(Políticas) \boldsymbol \gamma +
+(Financiamento) \boldsymbol \delta + \boldsymbol u
+$$ <br>
 
-1.  A partir de valores iniciais de $\omega_k$, $\beta$ e $x_{ik}$ são estimados os pontos médios de cada votação, $z_{mlk}$, e as distâncias $d_{lk}$. Onde $z_{ly}$ = $z_{ml} - d_l$, $z_{ln}$ = $z_{ml} + d_l$ e $d_l = \frac{z_{ly} - z_{ln}}{2}$.
-
-<br>
-
-2.  Depois, estimam-se os pontos ideais, $x_{ik}$, condicionados a $z_{mlk}$, $d_{lk}$, $\beta$ e $\omega_k$.
-
-<br>
-
-3.  Estima-se $\beta$ e $\omega_k$ condicionais a $z_{mlk}$, $d_{lk}$ e $x_{ik}$.
+Onde $EMA22$ é um vetor $nx1$ representando o voto de cada dos $n$'s Deputados, $\boldsymbol \theta$, $\boldsymbol \gamma$ e $\boldsymbol \delta$, são vetores dos coeficientes a serem estimados, $\boldsymbol u$ é o vetor $n1$ dos distúrbios não observados e as variáeveis entre parênteses estão descritas no Quadro 3.1.
 
 <br>
 
-Esses passos são repetidos até a convergência. Como resultado, os pontos ideais estimados para as dimensões ficam restritos a uma hiperesfera com raio unitário. Os valores iniciais de $\beta$ e $\omega_k$ são os *defaults* sugeridos pelo criador do método. 
+| **Variável** | **Descrição** |
+| --- | --- |
+| EMA22 | Variável com valor igual a 1 caso o Deputado tenha votado SIM e 0 caso tenha votado NÃO. |
+| **Pessoais** |
+| Superior | _Dummy_ para Deputado com grau de escolaridade de nível superior - valor 1 para candidatos com nível superior completo e valor 0 caso contrário. |
+| Casado | _Dummy_ para o parlamentar casado - valor 1 para casado e 0 para os demais. |
+| Político | _Dummy_ para Deputado cuja ocupação declarada ao TSE no pleito de 2014 - valor 1 para era deputado, senador ou vereador e valor 0 caso contrário. |
+| **Políticas** |
+| Ideologia | Variável construída no capítulo anterior pelo método W-NOMINATE. |
+| Orientação Contra | _Dummy_ para o parlamentar cujo partido orientou a votar NÃO na EMA 22. |
+| Oposição | _Dummy_ para os parlamentares que não faziam parte da coligação vencedora nas eleições de 2014 - valor 1 caso pertencesse e 0 caso contrário. |
+| Região | _Dummy_ para a região a qual a UF cujo Deputado foi eleito pertence. |
+| **Financiamento** |
+| Rec.PJ | Percentual da Receita Total de campanha advinda de doações de pessoas jurídicas. |
+| Rec.PF | Percentual da Receita Total de campanha advinda de doações de pessoas físicas. |
+| Rec.Próprios | Percentual da Receita Total de campanha advinda de recursos próprios do Deputado. |
+| Rec.Partido | Percentual da Receita Total de campanha advinda do partido político do parlamentar. |
 
-@poole1997non também desenvolveu um método não paramétrico, novamente iterativo, chamado *Optimal Classification* (OC). Nele, não são feitas suposições sobre a distribuição das funções de utilidade. Exige-se apenas que sejam simétricas e único pico. Os estágios para o cálculo são descritos a seguir:
 
 <br>
 
-1.  São gerados valores iniciais para os pontos ideais, $x_i$ dos legisladores. Assim como no NOMINATE, esses valores partem de uma decomposição de uma matriz de concordância entre os legisladores. Tal matriz é duplamente centralizada, ou seja, são diminuídas as médias das linhas e das colunas de cada entrada.
-
-<br>
-
-2.  Dados os pontos ideais, encontram-se os vetores normais. Tais vetores são paralelos a um *cutting plane* que divide quem votou *yea* daquele que votou *nay*.
-
-<br>
-
-3.  Dados os $N_l$ vetores normais, estimam-se valores ótimos para $x_i$.
-
-<br>
-
-Os passos são repetidos até que os erros de classificação convirjam. Isso é feito sem que os erros de classificação aumentem de um passo para o outro.
-
-Outra técnica que será utilizada, conhecida por reduzir a dimensionalidade de um conjunto de dados, é a de Análise de Componentes Principais (ACP). Novamente, tem-se um método não paramétrico, amplamente utilizado em análise de dados, e que também é empregado nos algoritmos citados, quando buscam-se os valores iniciais para os pontos ideais. Uma vez que há uma decomposição matricial e são encontrados autovalores para as matrizes centralizadas de concordância dos legisladores.
-
-Por fim, destacam-se outros métodos que podem ser utilizados. Inicialmente, tem-se o *Quadratic Utility Model* (QN) desenvolvido por Poole em 1999. Este alia o procedimento do OC a uma função utilidade Quadrática [@poole2005spatial].
-
-Trabalhando com uma função de utilidade quadrática @carroll2009comparing desenvolveram o algoritmo IDEAL que implementava um processo de estimação Bayesiano e utilizava simulações de Monte Carlo via Cadeias de Markov (MCMC). Em sua pesquisa, os autores compararam os resultados obtidos pelo o NOMINATE e IDEAL para os dados da Suprema Corte americana de 1994 até 1997, e para o Senado do mesmo país de 2005 até 2007. Não foram encontradas diferenças significativas entre os métodos e nenhuma clara vantagem adicional pela escolha de um deles.
-
-
-Nessa linha de estimações Bayesianas, pode-se citar o $\alpha$-NOMINATE também fruto da pesquisa de @carroll2009comparing, mas que usava uma função utilidade mista, parte quadrática e parte normal, e a metodologia de Teoria de Resposta ao Item (TRI) implementada por @clinton2004statistical e @martin2002dynamic, que adotavam utilidade quadrática.
-
-@heckman1996linear também contribuíram desenvolvendo um modelo de probabilidade linear com função utilidade uniforme. Por fim, novos métodos, baseados em novos algoritmos de maximização vêm sendo implementados pela necessidade de trabalhar de forma rápida e com um grande volume de dados. Neste caso, podem ser citadas as pesquisas de @imai2016fast e @bonica2014mapping.
-
-Algumas restrições devem ser feitas quanto aos dados para aplicação dos algoritmos desenvolvidos por Poole e que serão utilizados nesta pesquisa ( W-NOMINATE e OC). A primeira é a exclusão das votações unânimes, que por não revelarem diferenças entre os votantes não trazem poder explicativo ao método. Além disso, os processos de otimização convergem de forma mais rápida. Pelo critério de unanimidade foram excluídas votações cujo lado minoritário era menor que 2,5% dos votos.
-
-Além disso, foram excluídos os Deputados que tinham pouca participação na Câmara, ou seja, votaram menos que 20 vezes em toda a legislatura. Todos esses valores são padrões, *default*, do algoritmo.
-
-Por fim, considerou-se que ao mudar de partido, o Deputado era contabilizado como outro indivíduo. Embora haja uma perda de informações resultante desse processo, uma vez que ao mudar de partido em $t+1$ são desconsideradas as votações em $t$, esse procedimento também foi utilizado em @leite2016analise e @martins_rodrigo_mapeando_nodate. Este último destaca que tal procedimento implica em assumir que a mudança partidária do legislador impacta em seu comportamento parlamentar, pode-se então verificar quais mudanças ocorrem dada uma troca de partido.
-
-Embora tais restrições não sejam exigidas pela a ACP, todas foram executadas para que se pudesse ter uma melhor comparabilidade entre os métodos. Algumas métricas foram desenvolvidas por Poole para avaliar os modelos são elas a Classificação Correta (CC) e a Redução Proporcional do Erro Agregado (*Aggregate Proportional Reduction Error* - APRE).
-
-A CC, como o próprio nome sugere, é uma medida formada pela razão entre o número de votos corretamente previstos pelo modelo e o número de votos totais. Como destacado por @leoni2002ideologia, a CC pode viesar a análise caso haja muitas situações em que os votos da maioria superam em larga escala a minoria. Portanto, para complementar a análise, criou-se a PRE, que é calculada como:
-
-<br>
-
-$$PRE = \frac{\text {Votos da Minoria} - \text{Erros feitos pelo Modelo}}{\text{Votos da Minoria}} $$
-
-<br>
-
-Logo, com a PRE, tem-se uma medida de o quanto o modelo estimado supera um modelo ingênuo. Calculando a PRE para todas as votações tem-se a APRE. Essas duas métricas foram utilizadas  tanto para apontar o número de dimensões como para indicar a performance do modelo. 
-
-
-
-
-
+## Método
