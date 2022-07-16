@@ -37,3 +37,26 @@ Onde $EMA22$ é um vetor $n\times1$ representando o voto de cada dos $n$'s Deput
 <br>
 
 ## Método
+
+Devido a existencia de uma grande quantidade de variáveis disponíveis e nenhum arcabouço teórico consolidado sobre o tema optou-se por utilizar um método de *Machine Learning* (ML) conhecido como *Elastic Net*.
+
+O ML consiste basicamente em três etapas. Inicialmente, divide-se a amostra em duas partes, aleatoriamente, uma chamada de teste e outra de treino. Utilizou-se a proporção de 75% para teste e 25% para treino, mantendo-se a proporção
+na variável resposta. Ou seja, na amostra como um todo cerca de 55% dos Deputados votou a favor da emenda e o restante contra. Essa proporcionalidade foi mantida na base de teste e de treino.
+
+Depois, o modelo proposto é estimado utilizando a amostra de treino. Após a escolha da melhor especificação com base em métricas definidas pelo pesquisador, verifica-se o poder preditivo do modelo na base de teste. Esse processo é feito interativamente até que o melhor resultado seja obtido.
+
+Algumas etapas auxiliares foram implementadas. Primeiramente, fez-se um pré-processamento dos dados na base de teste. Todas as variáveis categóricas foram transformadas em binárias. Depois, as variáveis monetárias, em valores absolutos, foram logaritmizadas. Aquelas cujo valor era zero foram transformadas em um, antes de aplicar o operador. Após, foram imputados valores para os dados ausentes, de acordo com o algoritmo de K Vizinhos mais próximos (KNN). POr fim, foram eliminadas as variáveis com variância próxima de zero.
+
+Na etapa em que o modelo foi treinado, uou-se a validação cruzada conhecida como *CV k-Fold* que consiste em dividir a amostra *k* partes iguais para que sejam escolhidos os hiperparametros do modelo. Cada método de estimação tem um conjunto de hiperparâmtros a serem definidos pelo pesquisador. Nesta pesquisa, o *k* escolhido foi igual a 4. Dessa forma, separou-se a primeira parte ($k_1$) e juntaram-se as demais ($k_2$ + $k_3$+ $k_4$ ) onde o modelo foi estimado. Com base nos parametros obtidos, testou-se a previsão do modelo em $k_1$. Isso é feito até que todas as subamostras sejam utilizadas como teste. Depois, associado a cada combinação de hiperparamtros, calcula-se uma medida de qualidade média para as *k* subamostras. 
+
+O algoritmo de ML utilizado nesta pesquisa é uma generalização dos mínimos quadrados ordinários, onde é aplicada uma penalização ao número de coeficientes angulares estimados. Portanto, é feita a seguinte minimização:
+
+$$Min\frac{1}{2N} \sum_{i=1}^{N}(y_i-\beta_0-x_i^T\beta)^2 + 
+\lambda[(1-\alpha)||\beta||_2^2 + \alpha||\beta||_1]$$
+
+
+<br>
+
+Onde $\lambda\geq0$ é o hiperparâmetro de penalização e $0\geq\alpha\geq1$ é o hiperparâmetro de mistura entre os métodos *Ridge* ($\alpha=0$) ou *Lasso* ($\alpha=1$). Seus valores são escolhidos pelo pesquisador. Além disso, $x_i$ representa as variáveis explicativas, $y_i$ a variável resposta e $i = 1, ..., N$. Por fim, $||\beta||_2 = \sum_{j=1}^p|\beta_j^2|$ e $|\beta|_1 = \sum_{j=1}^p|\beta_j|$.
+
+Voltando ao método de validação cruzada, buscou-se um conjunto de combinações entre $\alpha$ e $\beta$ que alcançasse a melhor média entre, as *k* subamostras, da métrica de avaliação do modelo. Como o intuito desta pesquisa não é previsão, definiu-se como métrica o erro quadrático médio (EQM). 

@@ -383,10 +383,10 @@ campanha dos parlamentares. Estimou-se o seguinte modelo linear.</p>
 (Políticas) \boldsymbol \gamma +
 (Financiamento) \boldsymbol \delta + \boldsymbol u
 \]</span> <br></p>
-<p>Onde <span class="math inline">\(EMA22\)</span> é um vetor <span class="math inline">\(nx1\)</span> representando o voto de cada dos
+<p>Onde <span class="math inline">\(EMA22\)</span> é um vetor <span class="math inline">\(n\times1\)</span> representando o voto de cada dos
 <span class="math inline">\(n\)</span>’s Deputados, <span class="math inline">\(\boldsymbol \theta\)</span>, <span class="math inline">\(\boldsymbol \gamma\)</span> e <span class="math inline">\(\boldsymbol \delta\)</span>, são vetores dos
 coeficientes a serem estimados, <span class="math inline">\(\boldsymbol
-u\)</span> é o vetor <span class="math inline">\(nx1\)</span> dos
+u\)</span> é o vetor <span class="math inline">\(n\times1\)</span> dos
 distúrbios não observados e as variáeveis entre parênteses estão
 descritas no Quadro 3.1.</p>
 <p><br></p>
@@ -480,125 +480,58 @@ do parlamentar.</td>
 </tbody>
 </table>
 <p><br></p>
-<ol style="list-style-type: decimal">
-<li>A partir de valores iniciais de <span class="math inline">\(\omega_k\)</span>, <span class="math inline">\(\beta\)</span> e <span class="math inline">\(x_{ik}\)</span> são estimados os pontos médios de
-cada votação, <span class="math inline">\(z_{mlk}\)</span>, e as
-distâncias <span class="math inline">\(d_{lk}\)</span>. Onde <span class="math inline">\(z_{ly}\)</span> = <span class="math inline">\(z_{ml} - d_l\)</span>, <span class="math inline">\(z_{ln}\)</span> = <span class="math inline">\(z_{ml} + d_l\)</span> e <span class="math inline">\(d_l = \frac{z_{ly} - z_{ln}}{2}\)</span>.</li>
-</ol>
+</div>
+<div id="método" class="section level2">
+<h2>Método</h2>
+<p>Devido a existencia de uma grande quantidade de variáveis disponíveis
+e nenhum arcabouço teórico consolidado sobre o tema optou-se por
+utilizar um método de <em>Machine Learning</em> (ML) conhecido como
+<em>Elastic Net</em>.</p>
+<p>O ML consiste basicamente em três etapas. Inicialmente, divide-se a
+amostra em duas partes, aleatoriamente, uma chamada de teste e outra de
+treino. Utilizou-se a proporção de 75% para teste e 25% para treino,
+mantendo-se a proporção na variável resposta. Ou seja, na amostra como
+um todo cerca de 55% dos Deputados votou a favor da emenda e o restante
+contra. Essa proporcionalidade foi mantida na base de teste e de
+treino.</p>
+<p>Depois, o modelo proposto é estimado utilizando a amostra de treino.
+Após a escolha da melhor especificação com base em métricas definidas
+pelo pesquisador, verifica-se o poder preditivo do modelo na base de
+teste. Esse processo é feito interativamente até que o melhor resultado
+seja obtido.</p>
+<p>Algumas etapas auxiliares foram implementadas. Primeiramente, fez-se
+um pré-processamento dos dados na base de teste. Todas as variáveis
+categóricas foram transformadas em binárias. Depois, as variáveis
+monetárias, em valores absolutos, foram logaritmizadas. Aquelas cujo
+valor era zero foram transformadas em um, antes de aplicar o operador.
+Após, foram imputados valores para os dados ausentes, de acordo com o
+algoritmo de K Vizinhos mais próximos (KNN). POr fim, foram eliminadas
+as variáveis com variância próxima de zero.</p>
+<p>Na etapa em que o modelo foi treinado, uou-se a validação cruzada
+conhecida como <em>CV k-Fold</em> que consiste em dividir a amostra
+<em>k</em> partes iguais para que sejam escolhidos os hiperparametros do
+modelo. Cada método de estimação tem um conjunto de hiperparâmtros a
+serem definidos pelo pesquisador. Nesta pesquisa, o <em>k</em> escolhido
+foi igual a 4. Dessa forma, separou-se a primeira parte (<span class="math inline">\(k_1\)</span>) e juntaram-se as demais (<span class="math inline">\(k_2\)</span> + <span class="math inline">\(k_3\)</span>+ <span class="math inline">\(k_4\)</span> ) onde o modelo foi estimado. Com
+base nos parametros obtidos, testou-se a previsão do modelo em <span class="math inline">\(k_1\)</span>. Isso é feito até que todas as
+subamostras sejam utilizadas como teste. Depois, associado cada
+combinação de hiperparamtros, calcula-se uma medida de qualidade média
+para as <em>k</em> subamostras.</p>
+<p>O algoritmo de ML utilizado nesta pesquisa é uma generalização dos
+mínimos quadrados ordinários, onde é aplicada uma penalização ao número
+de coeficientes angulares estimados. Portanto, é feita a seguinte
+minimização:</p>
+<p><span class="math display">\[min_{a}\frac{1}{2N}
+\sum_{i=1}^{N}(y_i-\beta_0-x_i^T\beta)^2 +
+\lambda[(1-\alpha)||\beta||_2 + \alpha|\beta|_1]\]</span></p>
 <p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Depois, estimam-se os pontos ideais, <span class="math inline">\(x_{ik}\)</span>, condicionados a <span class="math inline">\(z_{mlk}\)</span>, <span class="math inline">\(d_{lk}\)</span>, <span class="math inline">\(\beta\)</span> e <span class="math inline">\(\omega_k\)</span>.</li>
-</ol>
-<p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Estima-se <span class="math inline">\(\beta\)</span> e <span class="math inline">\(\omega_k\)</span> condicionais a <span class="math inline">\(z_{mlk}\)</span>, <span class="math inline">\(d_{lk}\)</span> e <span class="math inline">\(x_{ik}\)</span>.</li>
-</ol>
-<p><br></p>
-<p>Esses passos são repetidos até a convergência. Como resultado, os
-pontos ideais estimados para as dimensões ficam restritos a uma
-hiperesfera com raio unitário. Os valores iniciais de <span class="math inline">\(\beta\)</span> e <span class="math inline">\(\omega_k\)</span> são os <em>defaults</em>
-sugeridos pelo criador do método.</p>
-<p><span class="citation">@poole1997non</span> também desenvolveu um
-método não paramétrico, novamente iterativo, chamado <em>Optimal
-Classification</em> (OC). Nele, não são feitas suposições sobre a
-distribuição das funções de utilidade. Exige-se apenas que sejam
-simétricas e único pico. Os estágios para o cálculo são descritos a
-seguir:</p>
-<p><br></p>
-<ol style="list-style-type: decimal">
-<li>São gerados valores iniciais para os pontos ideais, <span class="math inline">\(x_i\)</span> dos legisladores. Assim como no
-NOMINATE, esses valores partem de uma decomposição de uma matriz de
-concordância entre os legisladores. Tal matriz é duplamente
-centralizada, ou seja, são diminuídas as médias das linhas e das colunas
-de cada entrada.</li>
-</ol>
-<p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Dados os pontos ideais, encontram-se os vetores normais. Tais
-vetores são paralelos a um <em>cutting plane</em> que divide quem votou
-<em>yea</em> daquele que votou <em>nay</em>.</li>
-</ol>
-<p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Dados os <span class="math inline">\(N_l\)</span> vetores normais,
-estimam-se valores ótimos para <span class="math inline">\(x_i\)</span>.</li>
-</ol>
-<p><br></p>
-<p>Os passos são repetidos até que os erros de classificação convirjam.
-Isso é feito sem que os erros de classificação aumentem de um passo para
-o outro.</p>
-<p>Outra técnica que será utilizada, conhecida por reduzir a
-dimensionalidade de um conjunto de dados, é a de Análise de Componentes
-Principais (ACP). Novamente, tem-se um método não paramétrico,
-amplamente utilizado em análise de dados, e que também é empregado nos
-algoritmos citados, quando buscam-se os valores iniciais para os pontos
-ideais. Uma vez que há uma decomposição matricial e são encontrados
-autovalores para as matrizes centralizadas de concordância dos
-legisladores.</p>
-<p>Por fim, destacam-se outros métodos que podem ser utilizados.
-Inicialmente, tem-se o <em>Quadratic Utility Model</em> (QN)
-desenvolvido por Poole em 1999. Este alia o procedimento do OC a uma
-função utilidade Quadrática <span class="citation">[@poole2005spatial]</span>.</p>
-<p>Trabalhando com uma função de utilidade quadrática <span class="citation">@carroll2009comparing</span> desenvolveram o algoritmo
-IDEAL que implementava um processo de estimação Bayesiano e utilizava
-simulações de Monte Carlo via Cadeias de Markov (MCMC). Em sua pesquisa,
-os autores compararam os resultados obtidos pelo o NOMINATE e IDEAL para
-os dados da Suprema Corte americana de 1994 até 1997, e para o Senado do
-mesmo país de 2005 até 2007. Não foram encontradas diferenças
-significativas entre os métodos e nenhuma clara vantagem adicional pela
-escolha de um deles.</p>
-<p>Nessa linha de estimações Bayesianas, pode-se citar o <span class="math inline">\(\alpha\)</span>-NOMINATE também fruto da pesquisa
-de <span class="citation">@carroll2009comparing</span>, mas que usava
-uma função utilidade mista, parte quadrática e parte normal, e a
-metodologia de Teoria de Resposta ao Item (TRI) implementada por <span class="citation">@clinton2004statistical</span> e <span class="citation">@martin2002dynamic</span>, que adotavam utilidade
-quadrática.</p>
-<p><span class="citation">@heckman1996linear</span> também contribuíram
-desenvolvendo um modelo de probabilidade linear com função utilidade
-uniforme. Por fim, novos métodos, baseados em novos algoritmos de
-maximização vêm sendo implementados pela necessidade de trabalhar de
-forma rápida e com um grande volume de dados. Neste caso, podem ser
-citadas as pesquisas de <span class="citation">@imai2016fast</span> e
-<span class="citation">@bonica2014mapping</span>.</p>
-<p>Algumas restrições devem ser feitas quanto aos dados para aplicação
-dos algoritmos desenvolvidos por Poole e que serão utilizados nesta
-pesquisa ( W-NOMINATE e OC). A primeira é a exclusão das votações
-unânimes, que por não revelarem diferenças entre os votantes não trazem
-poder explicativo ao método. Além disso, os processos de otimização
-convergem de forma mais rápida. Pelo critério de unanimidade foram
-excluídas votações cujo lado minoritário era menor que 2,5% dos
-votos.</p>
-<p>Além disso, foram excluídos os Deputados que tinham pouca
-participação na Câmara, ou seja, votaram menos que 20 vezes em toda a
-legislatura. Todos esses valores são padrões, <em>default</em>, do
-algoritmo.</p>
-<p>Por fim, considerou-se que ao mudar de partido, o Deputado era
-contabilizado como outro indivíduo. Embora haja uma perda de informações
-resultante desse processo, uma vez que ao mudar de partido em <span class="math inline">\(t+1\)</span> são desconsideradas as votações em
-<span class="math inline">\(t\)</span>, esse procedimento também foi
-utilizado em <span class="citation">@leite2016analise</span> e <span class="citation">@martins_rodrigo_mapeando_nodate</span>. Este último
-destaca que tal procedimento implica em assumir que a mudança partidária
-do legislador impacta em seu comportamento parlamentar, pode-se então
-verificar quais mudanças ocorrem dada uma troca de partido.</p>
-<p>Embora tais restrições não sejam exigidas pela a ACP, todas foram
-executadas para que se pudesse ter uma melhor comparabilidade entre os
-métodos. Algumas métricas foram desenvolvidas por Poole para avaliar os
-modelos são elas a Classificação Correta (CC) e a Redução Proporcional
-do Erro Agregado (<em>Aggregate Proportional Reduction Error</em> -
-APRE).</p>
-<p>A CC, como o próprio nome sugere, é uma medida formada pela razão
-entre o número de votos corretamente previstos pelo modelo e o número de
-votos totais. Como destacado por <span class="citation">@leoni2002ideologia</span>, a CC pode viesar a análise
-caso haja muitas situações em que os votos da maioria superam em larga
-escala a minoria. Portanto, para complementar a análise, criou-se a PRE,
-que é calculada como:</p>
-<p><br></p>
-<p><span class="math display">\[PRE = \frac{\text {Votos da Minoria} -
-\text{Erros feitos pelo Modelo}}{\text{Votos da Minoria}} \]</span></p>
-<p><br></p>
-<p>Logo, com a PRE, tem-se uma medida de o quanto o modelo estimado
-supera um modelo ingênuo. Calculando a PRE para todas as votações tem-se
-a APRE. Essas duas métricas foram utilizadas tanto para apontar o número
-de dimensões como para indicar a performance do modelo.</p>
+<p>Onde <span class="math inline">\(\lambda\geq0\)</span> é o
+hiperparâmetro de penalização e <span class="math inline">\(0\geq\alpha\geq1\)</span> é o hiperparâmetro de
+mistura entre os métodos <em>Ridge</em> (<span class="math inline">\(\alpha=0\)</span>) ou <em>Lasso</em> (<span class="math inline">\(\alpha=1\)</span>). Seus valores são escolhidos
+pelo pesquisador. Além disso, <span class="math inline">\(x_i\)</span>
+representa as variáveis explicativas, <span class="math inline">\(y_i\)</span> a variável resposta e <span class="math inline">\(i = 1, ..., N\)</span>. Por fim, <span class="math inline">\(||\beta||_2 = \sum_{j=1}^p\beta_j^2\)</span> e
+<span class="math inline">\(|\beta|_1 =
+\sum_{j=1}^p\beta_j^2\)</span></p>
 </div>
 </div>
 
