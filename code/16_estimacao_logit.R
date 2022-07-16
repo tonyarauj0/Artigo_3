@@ -314,7 +314,7 @@ df_estimacao1 <- df_estimacao |>
 # Salvar
 
 ggplot2::ggsave(
-    filename = here::here("figures", "resultados", "ml", "gr_estimacao.png"),
+    filename = here::here("figures", "resultados", "gr_estimacao.png"),
     plot = gr_estimacao ,
     dpi = 600,
     width = 8,
