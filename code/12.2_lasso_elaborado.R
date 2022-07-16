@@ -26,33 +26,33 @@ base <- base |>
 base <- base |>
     select(
         c(dim1,
-          # pj,
-          # pf,
-          # prop,
-          # pol,
-          # cand,
-          # patrimonio,
+          pj,
+          pf,
+          prop,
+          pol,
+          cand,
+          patrimonio,
           per_pj,
           per_pf,
           per_prop,
           per_pol,
-          # per_cand,
+          per_cand,
           regiao,
-          # mudou_partido,
+          mudou_partido,
           # nm_atual_partido,
           # deputado_sigla_uf,
           politico,
-          # suplente,
+          suplente,
           governo,
           votos,
           idade,
-          # masculino,
+          masculino,
           superior,
           casado,
           branco,
           ema22,
           or_contra_ema22,
-          # receita_total
+          receita_total
         )) |>
     mutate_if(is.character, as.factor)
 
@@ -70,8 +70,9 @@ base_test <- testing(base_split)
 
 base_rec <- recipe(ema22 ~ ., data = base_train) |>
     step_dummy(all_nominal_predictors()) |>
-    # step_log(pf, pj, prop, cand, pol, receita_total) |>
-    step_impute_knn(all_predictors())
+    step_log(pf, pj, prop, cand, pol, receita_total) |>
+    step_impute_knn(all_predictors()) |>
+    step_nzv(all_predictors())
 
 
 # 5. Modelo ---------------------------------------------------------------
@@ -229,17 +230,22 @@ final_reg_model_mod1 |>
         Variable == "regiao_Norte" ~ "Norte",
         Variable == "regiao_Nordeste" ~ "Nordeste",
         Variable == "branco" ~ "Branco",
+        Variable == "masculino" ~ "Masculino",
+        Variable == "suplente" ~ "Suplente",
         Variable == "superior" ~ "Ens.Superior",
         Variable == "regiao_Sudeste" ~ "Sudeste",
         Variable == "receita_total" ~ "Rec.Totais",
         Variable == "regiao_Sul" ~ "Sul",
         Variable == "governo_Oposição" ~ "Oposição",
         Variable == "politico" ~ "Político",
+        Variable == "pf" ~ "Rec.PF(Absoluta)",
         Variable == "per_pf" ~ "Rec.PF",
         Variable == "per_pj" ~ "Rec.PJ",
         Variable == "per_prop" ~ "Rec.Próprios",
+        Variable == "prop" ~ "Rec.Próprios(Absoluta)",
         Variable == "casado" ~ "Casado",
         Variable == "per_pol" ~ "Rec.Partido",
+        Variable == "pol" ~ "Rec.Partido(Absoluta)",
         Variable == "votos" ~ "Votos"
     )) |>
     mutate(
