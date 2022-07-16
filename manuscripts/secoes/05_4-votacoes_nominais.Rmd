@@ -1,0 +1,40 @@
+## Votações Nominais
+
+```{r votacoes unicas}
+votacoes <- base_votacoes |> 
+  dplyr::select(id_votacao, ano,deputado_id) |> 
+  dplyr::group_by(id_votacao, ano) |> 
+  dplyr::summarise(dep_by_votacao = dplyr::n()) |> 
+  dplyr::ungroup()
+
+```
+
+Ao todo foram `r length(votacoes$id_votacao)` votações. A Tabela \@ref(tab:totalvotacaoano) exibe as principais estatísticas descritivas das votações em cada ano e no agregado. O primeiro ano de mandato dos parlamentares em questão foi o com maior número de votaçoes nominais. Também foi o ano com maior número de parlamentares votando, na média. Mesmo assim, houve uma votação que consta apenas um voto e outra que contou com 491 Deputados, ou seja, quase 96% dos legisladores.
+
+Já em 2016, ano de pleito municipal, a atividade parlamentar decaiu, com apenas 209 votações. No ano seguinte, houve um ligeiro crescimento no total de votações mas com diminuição na quantidade média de votantes.
+
+Por fim, no último ano de mandato e ano eleitoral, a quantidade de votações caiu mais da metade em relação ao início da legislatura. Novamente, chama a atenção o comportamento diferente em anos eleitorais, viu-se que a coesão dos partidos é maior e o número de votações é menor. A quantidade média de Deputados participando foi praticamente igual a do ano anterior. É importante ressaltar que em 2016 aconteceu uma das votações mais importantes dessa legislatura, o *impeachment* da presidente Dilma Roussef.
+
+<br>
+
+```{r}
+load(file = here::here("tables", "tabela_votacoes_nominais.R"))
+```
+
+
+
+```{r, tabela descritivas votacoes, tab.cap = "Total de Parlamentares por votação e ano", tab.id = "totalvotacaoano", results='markup'}
+
+tb_votacoes_nominais
+ 
+```
+
+<br>
+
+Em cada votação na Câmara os parlamentares podem votar sim, não, abster-ce de votar ou obstruir a votação. O presidente do orgão não vota, mas tem o poder de agenda. Ou seja, pode organizar a ordem das medidas a serem votadas para assegurar um resultado que deseja. Embora sejam muitos os parlamentares nem todos são ativos, ou seja, desempenham seu papel na câmara votando em leis, projetos e demais.
+
+Destaca-se que o poder de agenda não está contemplado na elaboração do modelo teórico ou dos métodos utilizados. Por fim, a pesquisa utiliza apenas votos Sim e Não, assim como todos os trabalhos acerca do legislativo brasileiro citados. Embora haja uma clara revelação de preferência nestas opções, os casos em que o parlamentar obstrui a votação ou se abstem poderiam ser encarados como um voto Não. 
+
+Em cada votação nominal podem ser votados pontos específicos de uma proposta maior, seja um Projeto de Lei (PL), Requerimento de Urgencia (REQ), Medida Provisória (MPV), Proposta de Emenda a Constituição (PEC) e demais. Uma PEC fictícia, por exemplo, pode ter cinco especificidades que serão votadas uma a uma, identificadas por um código único, na base de dados, mas que guardam relação entre si.
+
+Como visto anteriormente, os algoritmos da família NOMINATE utilizam apenas os votos de parlamentares que votaram em pelo menos 20 votações. Aplicando essa métrica, tem-se que 808 são considerados, 62 foram deletados da base final. Outra restrição feita é que são excluídas as votações onde o voto minoritário é menor que 2,5%. Dessa forma, são utilizadas 762 e 137 descartadas.

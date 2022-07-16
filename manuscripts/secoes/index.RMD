@@ -1,0 +1,190 @@
+--- 
+title: "Ideologia Política dos Deputados Federais da 55ª Legislatura brasileira"
+author: 
+- "Francisco Antonio Sousa de Araújo"
+date: "14 jun, 2022 (atualizado: `r format(Sys.time(), '%d %b, %Y')`)"
+output:
+  officedown::rdocx_document:
+    tables:
+      layout: autofit
+  # bookdown::word_document2:
+    reference_docx: ../template/template_word.docx
+    number_sections: FALSE
+    toc: FALSE
+bibliography: ../referencias/book.bib
+csl: ../template/abnt3.csl
+---
+
+
+```{r setup, include=FALSE, echo=F}
+# Configuração geral do documento
+knitr::opts_chunk$set(
+  echo = F,
+  eval = T,
+  message = F,
+  warning = F,
+  cache = F,
+  cache.lazy = F,
+  dpi = 600,
+  tab.cap.style = "Table Caption",
+  tab.cap.pre = "Tabela ",
+  tab.cap.sep = ": ",
+  tab.topcaption = T,
+  fig.cap = T,
+  fig.cap.style = "Imagem Caption",
+  fig.cap.pre = "Figura ",
+  fig.cap.sep = ": ",
+  fig.topcaption = T
+)
+
+
+```
+
+```{r pacotes, results='hide'}
+
+# install.packages("pacman")
+pacman::p_load(tidyverse,
+               rmarkdown,
+               gtsummary,
+               janitor,
+               scales,
+               flextable,
+               officer,
+               officedown)
+
+```
+
+
+```{r flextabe_set}
+#configuracao das tabelas
+set_flextable_defaults(
+  font.family = "Times New Roman",
+  font.size = 12,
+  font.color = "black",
+  big.mark = ".",
+  decimal.mark = ",",
+  border.color = "black",
+  digits = 2,
+  table.layout = "autofit"
+) 
+
+```
+
+```{r gtsummary_set}
+#configuracao das tabelas
+theme_gtsummary_language(
+  language = "pt",
+  decimal.mark = ",",
+  big.mark = ".",
+  iqr.sep = "-",
+  ci.sep = NULL,
+  set_theme = TRUE
+)
+```
+
+
+
+```{r child="01-intro.Rmd"}
+
+
+```
+
+
+\newpage
+
+```{r, eval=TRUE, child="03-revisao_bibliografica.Rmd"}
+
+
+```
+
+\newpage
+
+```{r child="04-metodologia.Rmd"}
+
+
+```
+
+\newpage
+
+```{r child="05_0-dados.Rmd"}
+
+
+```
+
+
+
+```{r child="05_1-deputados_p_partido.Rmd"}
+
+
+```
+
+
+
+```{r child="05_2-migracao_partidaria.Rmd"}
+
+
+```
+
+
+
+```{r child="05_3-indice_rice.Rmd"}
+
+
+```
+
+
+
+```{r child="05_4-votacoes_nominais.Rmd"}
+
+
+```
+
+\newpage
+
+
+```{r child="06_0-resultados.Rmd"}
+
+
+```
+
+
+```{r child="06_1-pontos_ideais.Rmd"}
+
+
+```
+
+
+```{r, eval=T, child="06_2-interpretacao.Rmd"}
+
+
+```
+
+
+```{r child="06_3-classificacao_partidos.Rmd"}
+
+
+```
+
+\newpage
+
+
+```{r child="07-conclusao.Rmd"}
+
+
+```
+
+\newpage
+
+```{r child="08-referencias.Rmd"}
+
+
+```
+
+<div id="refs"></div>
+
+\newpage
+
+```{r child="09-apendice.Rmd"}
+
+
+```

@@ -1,0 +1,20 @@
+# Apêndice{-}
+
+```{r}
+load(file = here::here("tables", "tab1_apendice.R"))
+```
+
+```{r, tab.cap="Resultados da Estimação para Primeira Dimensão."}
+tab1_apendice
+```
+
+
+```{r}
+load(file = here::here("tables", "tab2_apendice.R"))
+```
+
+
+```{r, tab.cap="Resultados da Estimação da Segunda Dimensão."}
+tab2_apendice
+```
+
