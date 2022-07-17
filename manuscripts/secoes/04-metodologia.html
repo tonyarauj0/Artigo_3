@@ -369,14 +369,14 @@ pre code {
 <h1>Metodologia</h1>
 <p>Esta seção descreve o modelo econométrico estimado e os métodos
 escolhidos. Como já apresentado, outras EMA’s trouxeram propostas de
-financiamento de camapanha eleitoral para a discussão da PEC 182/2007. A
+financiamento de campanha eleitoral para a discussão da PEC 182/2007. A
 variável dependente considerada trata apenas dos votos contra ou a favor
-da EMA 22. Porém, vale destacar que 30 congressitas não participaram
-dessa votação e, no dia seguinte, votaram na EMA 32 e EMA 10.</p>
+da EMA 22. Porém, vale destacar que 30 congressistas não participaram
+desta votação e, no dia seguinte, votaram na EMA 32 e EMA 10.</p>
 <div id="modelo" class="section level2">
 <h2>Modelo</h2>
 <p>Na tentativa de encontrar quais os fatores mais correlacionados com o
-voto dos Deputados foram elencadas algumas variáveis relacionadas as
+voto dos Deputados foram elencadas algumas variáveis relacionadas às
 características pessoais, aos aspectos políticos e de financiamento de
 campanha dos parlamentares. Estimou-se o seguinte modelo linear.</p>
 <p><span class="math display">\[EMA22 = (Pessoais) \boldsymbol \theta  +
@@ -483,10 +483,23 @@ do parlamentar.</td>
 </div>
 <div id="método" class="section level2">
 <h2>Método</h2>
-<p>Devido a existencia de uma grande quantidade de variáveis disponíveis
+<p>Devido a existência de uma grande quantidade de variáveis disponíveis
 e nenhum arcabouço teórico consolidado sobre o tema optou-se por
 utilizar um método de <em>Machine Learning</em> (ML) conhecido como
 <em>Elastic Net</em>.</p>
+<p>O conjunto de explicativas utilizado para o ML foi composto pela
+ideologia do parlamentar, a orientação partidária em relação a votação
+em questão, se o Deputado mudou de partido após a eleição até o momento
+da votação, se o Deputado era um suplente, o total de votos obtidos na
+eleição, e se o congressista fazia parte da coligação do Governo. Também
+foram incluídos o patrimônio declarado à Justiça Eleitoral, os valores
+absolutos das doações feitas por PF, PJ, outros candidatos e comitês,
+pelo partido político do próprio Deputado, os recursos próprios
+utilizados como receita de campanha e também o valor total desta. Além
+de valores absolutos montou-se o percentual advindo de cada fonte. Como
+carcaterísticas pessoais mantiveram-se a idade, o sexo, o grau de
+instrução, o estado civil, a raça e a região a qual a UF cujo Deputado
+representava pertencia.</p>
 <p>O ML consiste basicamente em três etapas. Inicialmente, divide-se a
 amostra em duas partes, aleatoriamente, uma chamada de teste e outra de
 treino. Utilizou-se a proporção de 75% para teste e 25% para treino,
@@ -497,25 +510,24 @@ treino.</p>
 <p>Depois, o modelo proposto é estimado utilizando a amostra de treino.
 Após a escolha da melhor especificação com base em métricas definidas
 pelo pesquisador, verifica-se o poder preditivo do modelo na base de
-teste. Esse processo é feito interativamente até que o melhor resultado
-seja obtido.</p>
+teste. Esse processo é feito até que o melhor resultado seja obtido.</p>
 <p>Algumas etapas auxiliares foram implementadas. Primeiramente, fez-se
 um pré-processamento dos dados na base de teste. Todas as variáveis
 categóricas foram transformadas em binárias. Depois, as variáveis
 monetárias, em valores absolutos, foram logaritmizadas. Aquelas cujo
 valor era zero foram transformadas em um, antes de aplicar o operador.
 Após, foram imputados valores para os dados ausentes, de acordo com o
-algoritmo de K Vizinhos mais próximos (KNN). POr fim, foram eliminadas
+algoritmo de K Vizinhos mais próximos (KNN). Por fim, foram eliminadas
 as variáveis com variância próxima de zero.</p>
-<p>Na etapa em que o modelo foi treinado, uou-se a validação cruzada
+<p>Na etapa em que o modelo foi treinado, usou-se a validação cruzada
 conhecida como <em>CV k-Fold</em> que consiste em dividir a amostra
-<em>k</em> partes iguais para que sejam escolhidos os hiperparametros do
-modelo. Cada método de estimação tem um conjunto de hiperparâmtros a
+<em>k</em> partes iguais para que sejam escolhidos os hiperparâmetros do
+modelo. Cada método de estimação tem um conjunto de hiperparâmetros a
 serem definidos pelo pesquisador. Nesta pesquisa, o <em>k</em> escolhido
 foi igual a 4. Dessa forma, separou-se a primeira parte (<span class="math inline">\(k_1\)</span>) e juntaram-se as demais (<span class="math inline">\(k_2\)</span> + <span class="math inline">\(k_3\)</span>+ <span class="math inline">\(k_4\)</span> ) onde o modelo foi estimado. Com
-base nos parametros obtidos, testou-se a previsão do modelo em <span class="math inline">\(k_1\)</span>. Isso é feito até que todas as
+base nos parâmetros obtidos, testou-se a previsão do modelo em <span class="math inline">\(k_1\)</span>. Isso é feito até que todas as
 subamostras sejam utilizadas como teste. Depois, associado a cada
-combinação de hiperparamtros, calcula-se uma medida de qualidade média
+combinação de hiperparâmetros, calcula-se uma medida de qualidade média
 para as <em>k</em> subamostras.</p>
 <p>O algoritmo de ML utilizado nesta pesquisa é uma generalização dos
 mínimos quadrados ordinários, onde é aplicada uma penalização ao número
@@ -527,23 +539,56 @@ minimização:</p>
 <p><br></p>
 <p>Onde <span class="math inline">\(\lambda\geq0\)</span> é o
 hiperparâmetro de penalização e <span class="math inline">\(0\geq\alpha\geq1\)</span> é o hiperparâmetro de
-mistura entre os métodos <em>Ridge</em> (<span class="math inline">\(\alpha=0\)</span>) ou <em>Lasso</em> (<span class="math inline">\(\alpha=1\)</span>). Seus valores são escolhidos
-pelo pesquisador. Além disso, <span class="math inline">\(x_i\)</span>
-representa as variáveis explicativas, <span class="math inline">\(y_i\)</span> a variável resposta e <span class="math inline">\(i = 1, ..., N\)</span>. Por fim, <span class="math inline">\(||\beta||_2 = \sum_{j=1}^p|\beta_j^2|\)</span> e
+mistura entre os métodos <em>Ridge</em> (<span class="math inline">\(\alpha=0\)</span>) ou <em>Lasso</em> (<span class="math inline">\(\alpha=1\)</span>). Como destacado, seus valores
+são escolhidos pelo pesquisador. Além disso, <span class="math inline">\(x_i\)</span> representa as variáveis explicativas,
+<span class="math inline">\(y_i\)</span> a variável resposta e <span class="math inline">\(i = 1, ..., N\)</span>. Por fim, <span class="math inline">\(||\beta||_2 = \sum_{j=1}^p|\beta_j^2|\)</span> e
 <span class="math inline">\(|\beta|_1 =
 \sum_{j=1}^p|\beta_j|\)</span>.</p>
 <p>Voltando ao método de validação cruzada, buscou-se um conjunto de
-combinações entre <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span> que alcançasse a melhor média
-entre, as <em>k</em> subamostras, da métrica de avaliação do modelo.
-Como o intuito desta pesquisa não é previsão, definiu-se como métrica o
-erro quadrático médio (EQM). Uma vez escolhidos os melhores
-hiperparametros, estimou-se o modelo no conjunto de teste, onde foram
-extraídas as variáveis mais importantes, a partir do valor dos
-parametros estimados e padronizados.</p>
-<p>Além do método de ML, empregou-se uma regressão logarítimica usual.
-como será visto, o valor de <span class="math inline">\(\lambda\)</span>
+combinações (<em>grid</em>) entre <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span> que alcançasse a melhor média,
+entre as <em>k</em> subamostras, da métrica de avaliação do modelo. Como
+o intuito desta pesquisa não é previsão, definiu-se como métrica o erro
+quadrático médio (EQM), outros modelos de previsão e classificação focam
+em acurácia, precisão e curva ROC (<em>Receiver Operating
+Characteristic</em>). Uma vez escolhidos os melhores hiperparâmetros,
+estimou-se o modelo no conjunto de teste, onde foram extraídas as
+variáveis mais importantes, a partir do valor dos parâmetros estimados e
+padronizados.</p>
+<p>Além do método de ML, empregou-se uma regressão logarítmica usual.
+Como será visto, o valor de <span class="math inline">\(\lambda\)</span>
 encontrado foi próximo de zero, permitindo que fosse realizado uma
-regressão clássica.</p>
+regressão clássica. Nesse caso, mantiveram-se as variáveis explicativas
+que foram consideradas importantes para explicar o voto do parlamentar.
+Assim, características pessoais como Sexo e Raça foram excluídas. Dentre
+as variáveis de financiamento, optou-se pelo uso dos percentuais em
+relação à receita total de campanha. O patrimônio foi desconsiderado por
+ter muitos dados ausentes e ter uma disparidade muito grande entre os
+Deputados. Quanto às políticas, aquela que indicava se o mesmo era
+suplente não foi mantida, porque o número de votantes nessa condição era
+pequeno, e também o total de votos obtidos.</p>
+<p>Em suma, mantiveram-se as variáveis apresentadas no Quadro 3.1. A
+ideologia foi construída no capítulo 2. Optou-se pelo uso daquela
+construída a partir do W-NOMINATE por considerar o método mais
+consolidado na literatura sobre o tema. É importante ressaltar que a
+variável foi construída para toda a legislatura, portanto é fixa e só
+muda conforme a migração partidária. Espera-se que parlamentares mais à
+direita sejam favoráveis à EMA 22.</p>
+<p>Quanto à orientação partidária contra a emenda, a hipótese é que esta
+seja capaz de influenciar a decisão do congressista. Para o coeficiente
+da variável binária que indica se o Deputado era da Oposição não há um
+sinal esperado a priori, uma vez que o Governo não se posicionou sobre o
+tema, liberando os Deputados para votarem conforme queiram.</p>
+<p>Para as variáveis de financiamento, espera-se que aqueles cuja maior
+fonte de receita seja PJ votem pela aprovação da proposta. Para aqueles
+cuja maior fonte de financiamento advinda do próprio partido ou de
+recursos próprios espera-se um sinal negativo. A hipótese é de que ao
+barrar o financiamento PJ possa ser implementada uma barreira à entrada
+de novos concorrentes. Pelo mesmo motivo, de diminuir a concorrência,
+espera-se um parâmetro negativo para <em>dummy</em> que indica se o
+Deputado já era político.</p>
+<p>Quanto às regiões, utilizou-se a Centro-Oeste como categoria de
+referência. Assim como as demais variáveis de características pessoais,
+não são esperados sinais a priori para os coeficientes estimados.</p>
 </div>
 </div>
 
