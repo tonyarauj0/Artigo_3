@@ -1,6 +1,5 @@
 # Metodologia
 
-Esta seção descreve o modelo econométrico estimado e os métodos escolhidos. Como já apresentado, outras EMA's trouxeram propostas de financiamento de campanha eleitoral para a discussão da PEC 182/2007. A variável dependente considerada trata apenas dos votos contra ou a favor da EMA 22. 
 
 ## Modelo
 
