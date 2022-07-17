@@ -20,7 +20,7 @@ base <- dados |>
      mutate(percentual = (n/sum(n))*100) |>
      group_by(ema22) |>
      arrange(percentual) |>
-     top_n(10) |>
+     top_n(7) |>
      mutate(ocupacao = tidytext::reorder_within(ocupacao, n, ema22))  |>
      ggplot(aes(x = percentual, y = ocupacao, fill = ema22)) +
      geom_col(show.legend = FALSE, alpha = 0.8) +
@@ -48,7 +48,7 @@ ggplot2::ggsave(
     filename = here::here("figures", "dados", "pessoais", "barras_ocupacao.png"),
     plot = barras_ocupacao ,
     dpi = 600,
-    width = 15,
+    width = 12,
     height = 6
 )
 
