@@ -1,25 +1,2 @@
 # Considerações Finais
 
-Essa pesquisa teve por objetivo principal calcular os pontos ideais dos Deputados Federais brasileiros de acordo com suas votações nominais entre 2015 e 2018. Para tanto, utilizaram-se os dados obtidos junto ao portal de Dados Abertos da Câmara dos Deputados.
-
-A partir do arcabouço teórico da Teoria do Voto Espacial e do trabalho seminal de @downs1957economic foram empregadas três técnicas de estimação de pontos ideais, o W-NOMINATE [@poole1985spatial], a  *Optimal Classification* (OC) [@poole1997non] e a Análise de Componentes Principais (ACP). Os resultados estavam bastante correlacionados entre si e apontaram para uma mesma configuração no mapa de votações.
-
-Constatou-se que duas dimensões eram suficientes para explanar a maioria das votações, embora no caso da ACP possa ser considerada uma terceira. A primeira dimensão, que explica a maior parte dos dados, foi interpretada como ideologia. Já a segunda, configurava a dinâmica entre Governo e Oposição.
-
-Dentre os conteúdos do que estava sendo votado, disponibilizados pela própria Câmara, constatou-se que aqueles mais relevantes para a primeira dimensão englobam a temática de Orçamento e Finanças Públicas. Além disso, dois grupos antagônicos foram encontrados quanto a ideologia. O primeiro formado por PT, PC do B e PSOL e outro por PSDB, DEM, PP, SD, CIDAD, MDB, PTB e PSC. Outros trabalhos como @leoni2002ideologia e @leite2016analise, embora analisando outras legislaturas, também encontraram essa dicotomia entre PT e PSDB.
-
-Foi empregado um método de clusterização com base nos pontos ideais estimados. Assim, parlamentares cujas preferências estavam mais próximas foram considerados como pertencentes a um mesmo partido. Diante disso, foram encontrados 2 partidos para os pontos calculados via OC, 5 para o W-NOMINATE e 7 para a ACP. Esses números são bem menores que os 32 partidos que tiveram representação na Câmara no período.
-
-Vale ressaltar que outras técnicas poderiam ser empregadas e comparadas com as que derivam-se dos métodos Bayesianos de estimação. Além disso, estes poderiam ser empregados para a comparação entre diversas legislaturas, bem como o DW-NOMINATE. Algumas restrições como considerar apenas votos Sim e Não nas votações nominais também poderiam ser revistos, assim como a possibilidade de manter como mesmo indivíduo os parlamentares que mudaram de partido. Uma análise mais rigorosa poderia ser empregada para definir se houve alguma mudança nos pontos ideais a partir do impedimento da presidente Dilma Rousseff ou quando os maiores partidos da base governista, MDB e PT, rompem publicamente.
-
-Diversas extensões dessa pesquisa podem ser feitas. A primeira é uma replicação para os dados do Senado brasileiro. Pode-se montar um painel que acompanhe as posições dos parlamentares a cada votação ou legislatura tornando-o de conhecimento do eleitorado. Outra possibilidade é que as posições ideológicas dos políticos possam ser utilizadas para explicar alguma política pública.
-
-Além disso, uma comparação entre a ideologia calculada pelas votações nominais, pelos discursos no plenário e pelos textos e conexões nas redes sociais pode ser feita. Dessa forma, buscar-se-iam comportamentos contraditórios. 
-
-A regressão linear feita, onde os pontos ideias são variáveis dependentes e os partidos as explicativas, poderiam ser melhor exploradas, com a inclusão de mais variáveis e implementação de métodos mais sofisticados. Utilizando as metodologias de resultados potenciais seria possível encontrar o efeito de mudar de partido sobre a ideologia, por exemplo.
-
-Por fim, destaca-se a riqueza dos dados utilizados que podem ser utilizados de diversas formas para o estudo de diversos temas como Ciclos Políticos, migração partidária, análise textual das ementas das propostas, ou efeito *network*.
-
-
-
-
