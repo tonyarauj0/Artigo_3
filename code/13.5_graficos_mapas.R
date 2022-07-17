@@ -40,8 +40,9 @@ tmap_options(check.and.fix = TRUE) #corrigir algum erro
     tm_fill(
         "percentual",
         palette = "RdYlBu",
-        style = "fixed",
-        breaks = seq(10,100,20),
+        style = "quantile",
+        # style = "fixed",
+        # breaks = seq(10,100,20),
         legend.format = list(
             digits = 0,
             text.separator = "├" ,
