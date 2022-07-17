@@ -4,7 +4,7 @@ Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo c
 
 <br>
 
-```{r ocupacao, fig.cap="Dez principais ocupações dos votantes.", fig.id="ocupacao", results='markup', out.width="80%"}
+```{r ocupacao, fig.cap="Sete principais ocupações dos votantes.", fig.id="ocupacao", results='markup', out.width="80%"}
 
 knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barras_ocupacao.png"))
 
