@@ -1,5 +1,60 @@
 ## Características Políticas
 
+Na Figura \@ref(fig.id:ideologia) observa-se a distribuição dos Deputados conforme a variável ideologia, construída no capítulo 2. Optou-se por manter apenas os valores obtidos pelo W-NOMINATE, por ser considerado um método mais consolidado. Além da distribuição dos dados são apresentados *box-plots* onde pode ser feita a visualização dos quartis. As médias são indicadas pelos pontos indicados nas curvas de densidade. Note que, a métrica varia de -1 até +1. Os Deputados que votaram a favor estão mais à direita no espectro ideológico.
+
+
+```{r ideologia, fig.cap="Ideologia dos votantes", fig.id="ideologia", results='markup', out.width="80%"}
+
+knitr::include_graphics(path = here::here("figures", "dados", "ideologia", "ideologia.png"))
+
+
+```
+
+<br>
+
+Referente a orientação partidária feita para a votação, Figura \@ref(fig:orientacao), nota-se que a maioria dos parlamentares obedece. Apenas em dois casos não foi possível identificar a diretiz do partido
+
+
+```{r, orientacao, fig.cap="Orientação Partidária x Voto.", fig.id="orientacao", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "dados", "politicos", "orientacao.png"))
+
+
+```
+
+<br>
+
+Outra variável analisada foi o número de votos recebidos. A idéia é que esta sirva como *proxy* para força do Deputado. Assim, pode-se averiguar se existe alguma correlação entre a força política e a votação. O operador logarítmico foi aplicado para melhor visualização. Observa-se que os dois agrupamentos são muito parecidos, as curvas de densidade quase se sobrepõe.
+
+<br>
+
+  
+```{r, votos, fig.cap="Votos obtidos pelos Deputados no Pleito de 2014.", fig.id="civil", results='markup'}
+knitr::include_graphics(path = here::here("figures", "dados", "politicos", "votos.png"))
+
+```
+
+
+<br>
+
+
+A Tabela \@ref(tab:tabelapoliticas) traz as estatísticas descritivas dos demais dados e também o teste de médias. As ideologias dos grupos possuem médias diferentes. No grupo que votou Não existe pelo menos um Deputado na extrema esquerda, além disso tem-se um desvio padrão maior para tais parlamentares.
+
+Entre as eleições e a votação em questão nenhum Deputado que votou a favor mudou de aprtido. No outro grupo, 7% mudaram. Quanto a ser um Deputado Suplente tem-se um baixo número de políticos nessa condição em ambos os lados, não há diferença de médias nesse caso. Por sua vez, existem mais deputados na Oposição ao governo no grupo que votou Sim.
+
+Quanto ao número de votos obtidos na eleição, há uma grande disparidade dentro de cada agrupamento. Existem Deputados que obtiveram mais de 1 Milhão de votos e outros que tiveram pouco mais de 6 Mil. Porém, a média de ambos os grupos é igual.
+
+
+```{r, tab.cap="Estatísticas Descritivas e Teste de Média, características políticas", tab.id="tabelapoliticas", results='markup'}
+
+read_rds(file = here::here("tables", "media_politicas.rds"))
+
+```
+
+
+
+
+
 
 
 
