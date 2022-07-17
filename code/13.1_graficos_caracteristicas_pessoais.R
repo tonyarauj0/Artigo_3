@@ -17,11 +17,12 @@ base <- dados |>
 (barras_ocupacao <-
     base |>
      count(ema22, ocupacao, sort = T) |>
+     mutate(percentual = (n/sum(n))*100) |>
      group_by(ema22) |>
-     slice_max(n, n = 10) |>
-     ungroup()  |>
+     arrange(percentual) |>
+     top_n(10) |>
      mutate(ocupacao = tidytext::reorder_within(ocupacao, n, ema22))  |>
-     ggplot(aes(x = (n/sum(n))*100, y = ocupacao, fill = ema22)) +
+     ggplot(aes(x = percentual, y = ocupacao, fill = ema22)) +
      geom_col(show.legend = FALSE, alpha = 0.8) +
      geom_label(aes(label = n), size = 5,color = "white", show.legend = F) +
      tidytext::scale_y_reordered() +
@@ -30,13 +31,16 @@ base <- dados |>
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
+           panel.border = element_blank(),
+           panel.grid.minor = element_blank(),
            plot.caption = element_text(hjust = 0)) +
      scale_x_continuous(labels = function(x) paste(format(x,
                                                           big.mark = ".",
                                                           decimal.mark = ",",
                                                           scientific = FALSE),
                                                    "%"
-     )
+     ),
+     breaks = seq(0,20,5)
      )
 )
 
@@ -53,7 +57,7 @@ ggplot2::ggsave(
      base |>
      count(ema22, instrucao, sort = T) |>
      group_by(ema22) |>
-     slice_max(n, n = 3) |>
+     # slice_max(n, n = 3) |>
      ungroup()  |>
      mutate(instrucao = tidytext::reorder_within(instrucao, n, ema22))  |>
      ggplot(aes(x = (n/sum(n))*100, y = instrucao, fill = ema22)) +
@@ -65,6 +69,8 @@ ggplot2::ggsave(
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
+           panel.border = element_blank(),
+           panel.grid.minor = element_blank(),
            plot.caption = element_text(hjust = 0)) +
      scale_x_continuous(labels = function(x) paste(format(x,
                                                           big.mark = ".",
@@ -91,7 +97,7 @@ ggplot2::ggsave(
      base |>
      count(ema22, estado_civil, sort = T) |>
      group_by(ema22) |>
-     slice_max(n, n = 4) |>
+     # slice_max(n, n = 4) |>
      ungroup()  |>
      mutate(estado_civil = tidytext::reorder_within(estado_civil, n, ema22)) |>
      ggplot(aes(x = (n/sum(n))*100, y = estado_civil, fill = ema22)) +
@@ -103,6 +109,8 @@ ggplot2::ggsave(
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
+           panel.border = element_blank(),
+           panel.grid.minor = element_blank(),
            plot.caption = element_text(hjust = 0)) +
      scale_x_continuous(labels = function(x) paste(format(x,
                                                           big.mark = ".",
@@ -130,7 +138,7 @@ ggplot2::ggsave(
      base |>
      count(ema22, raca, sort = T) |>
      group_by(ema22) |>
-     slice_max(n, n = 4) |>
+     # slice_max(n, n = 4) |>
      ungroup()  |>
      mutate(raca = tidytext::reorder_within(raca, n, ema22)) |>
      ggplot(aes(x = (n/sum(n))*100, y = raca, fill = ema22)) +
@@ -142,6 +150,8 @@ ggplot2::ggsave(
      scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
+           panel.border = element_blank(),
+           panel.grid.minor = element_blank(),
            plot.caption = element_text(hjust = 0)) +
      scale_x_continuous(labels = function(x) paste0(format(x,
                                                            big.mark = ".",
@@ -168,7 +178,7 @@ ggplot2::ggsave(
         base |>
         count(ema22, regiao, sort = T) |>
         group_by(ema22) |>
-        slice_max(n, n = 5) |>
+        # slice_max(n, n = 5) |>
         ungroup()  |>
         mutate(regiao = tidytext::reorder_within(regiao, n, ema22)) |>
         ggplot(aes(x = (n/sum(n))*100,
