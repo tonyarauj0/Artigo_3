@@ -58,16 +58,18 @@ knitr::include_graphics(path = here::here("figures", "dados",
 ```
 
 
-Por fim, a Tabela \@ref(tab:tabelapessoais) sintetiza o grupo de variáveis através das suas estatísticas descritivas e compara os dois grupos. A variável patrimônio, em milhares de reais, é autodeclarada. Além de alguns casos de dados ausentes existem alguns casos "curiosos". Alguns Deputados declararam ter apenas R\$1.800,00. Por outro lado, o valor máximo foi de mais de R\$ 1.000.000,00. O teste de médias apontou que os que votaram Sim tem um patrimonio maior do que os que votaram Não.
+Por fim, a Tabela \@ref(tab:tabelapessoais) sintetiza o grupo de variáveis através das suas estatísticas descritivas e compara os dois grupos. A variável patrimônio, em milhares de reais, é autodeclarada. Além de alguns casos de dados ausentes existem alguns casos "curiosos". Alguns Deputados declararam ter apenas R\$1.800,00. Por outro lado, o valor máximo foi de mais de R\$ 1.000.000,00. O teste de médias apontou que os que votaram Sim têm um patrimônio maior do que os que votaram Não.
 
-Quanto a ser político, fato que ocorre quando o parlamentar declarou ser Deputado, Vereador ou Senador no momento da eleição, os grupos tem média estatisticamente igual.
+Quanto a ser político, fato que ocorre quando o parlamentar declara ser Deputado, Vereador ou Senador no momento da eleição, os grupos têm média estatisticamente igual.
 
-A idade média também foi semelhante para os dois agrupamentos. O mínimo atingido foi de 23 anos (votou contra) e o máximo 84 anos (votu a favor). A média de pessoas do Sexo Masculino foi maior para os Deputados que votaram Sim, assim como a média de pessoas autodeclaradas da raça branca. Quanto a ter ensino superior e ser casado, a média de ambos os grupos não é estatísticamente diferente.
+A idade média também foi semelhante para os dois agrupamentos. O mínimo atingido foi de 23 anos (votou contra) e o máximo 84 anos (votou a favor). A média de pessoas do Sexo Masculino foi maior para os Deputados que votaram Sim, assim como a média de pessoas autodeclaradas da raça branca. Quanto a ter ensino superior e ser casado, a média de ambos os grupos não é estatisticamente diferente.
 
 
-```{r, tab.cap="Estatísticas Descritivas e Teste de Média, carcacterísticas pessoais.", tab.id="tabelapessoais", results='markup'}
+```{r, tab.cap="Estatísticas Descritivas e Teste de Média, características pessoais.", tab.id="tabelapessoais", results='markup'}
 
 read_rds(file = here::here("tables", "media_pessoais.rds"))
 
 ```
+
+
 
