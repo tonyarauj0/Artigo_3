@@ -103,7 +103,7 @@ ggplot2::ggsave(
     filename = here::here("figures", "dados", "financeiros", "receita_total.png"),
     plot = gr_receita_total ,
     dpi = 600,
-    width = 8,
+    width = 12,
     height = 6
 )
 
