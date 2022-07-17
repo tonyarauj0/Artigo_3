@@ -50,7 +50,7 @@ rain_height <- .1
                  position = position_nudge(x = rain_height * 3)) +
     # adjust layout
     scale_x_discrete(name = "", expand = c(rain_height*3, 0, 0, 0.7)) +
-    scale_y_continuous(name = "Log(Valor)") +
+    scale_y_continuous(name = "") +
                            # breaks = seq(-2, 10, 2),
                            # limits = c(-2, 10)) +
     coord_flip() +
@@ -74,7 +74,7 @@ ggplot2::ggsave(
     filename = here::here("figures", "dados", "financeiros", "receita_fontes.png"),
     plot = gr_receita_fontes ,
     dpi = 600,
-    width = 8,
+    width = 12,
     height = 6
 )
 
