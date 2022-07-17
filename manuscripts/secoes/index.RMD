@@ -1,8 +1,8 @@
 --- 
-title: "Ideologia Política dos Deputados Federais da 55ª Legislatura brasileira"
+title: "Como vota Deputado? Uma análise votação que barrou o financiamento de campanhas por Pessoas Jurídicas na PEC 182/2007"
 author: 
 - "Francisco Antonio Sousa de Araújo"
-date: "14 jun, 2022 (atualizado: `r format(Sys.time(), '%d %b, %Y')`)"
+date: "11 jul, 2022 (atualizado: `r format(Sys.time(), '%d %b, %Y')`)"
 output:
   officedown::rdocx_document:
     tables:
@@ -113,31 +113,25 @@ theme_gtsummary_language(
 
 
 
-```{r child="05_1-deputados_p_partido.Rmd"}
+```{r child="05_1-pessoais.Rmd"}
 
 
 ```
 
 
 
-```{r child="05_2-migracao_partidaria.Rmd"}
+```{r child="05_2-politicas.Rmd"}
 
 
 ```
 
 
 
-```{r child="05_3-indice_rice.Rmd"}
+```{r child="05_3-financiamento.Rmd"}
 
 
 ```
 
-
-
-```{r child="05_4-votacoes_nominais.Rmd"}
-
-
-```
 
 \newpage
 
@@ -148,22 +142,18 @@ theme_gtsummary_language(
 ```
 
 
-```{r child="06_1-pontos_ideais.Rmd"}
+```{r child="06_1-ml.Rmd"}
 
 
 ```
 
 
-```{r, eval=T, child="06_2-interpretacao.Rmd"}
+```{r, eval=T, child="06_2-logit.Rmd"}
 
 
 ```
 
 
-```{r child="06_3-classificacao_partidos.Rmd"}
-
-
-```
 
 \newpage
 

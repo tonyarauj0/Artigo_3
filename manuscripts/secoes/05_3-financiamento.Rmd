@@ -1,6 +1,6 @@
-## Índice de Rice
+## Financiamento de Camoanha
 
-Existe um índice desenvolvido por @rice1925behavior utilizado para medir a coesão partidária de acordo com as votações. O índice varia de 0 a 1, quanto mais próximo de 1, maior o consenso, ou seja, mais os parlamentares votam parecido. Ele é construído a partir da razão entre a diferença entre votos $sim$ e votos $não$ e o total de votos.  
+E  
 
 <br>
 
@@ -8,95 +8,14 @@ $$ IR = \frac{|sim - não|}{sim + não} $$
 
 <br>
 
-```{r rice index}
-# Base com votos sim e nao para o calculo do indice
-base_votacoes_index <- base_votacoes |> 
-  dplyr::filter(voto == "Sim" | voto == "Não") |> 
-  dplyr::mutate(voto_ri = dplyr::case_when(
-    voto == "Sim" ~ 1,
-    TRUE ~ 0
-  ))
-
-# Funcao para calcular o indice
-f.rice <- function(x){
-  denominator <- length(x)
-  numerator <- abs(2*sum(x)- denominator)
-  numerator/denominator
-}
-
-# Rice por Partido por ano ( ano é a media das votacoes)
-rice_partido_ano <- base_votacoes_index |> 
-  dplyr::group_by(nm_atual_partido, id_votacao) |> #agrupar por votacao e ano
-  dplyr::mutate(rice_votacao = f.rice(voto_ri)) |> 
-  dplyr::group_by(nm_atual_partido, ano) |> 
-  dplyr::summarise(rice_medio = mean(rice_votacao)) |> 
-  dplyr::left_join(base_votacoes |> #Juntar com numero de parlamentares por ano
-  dplyr::distinct(deputado_id, nm_atual_partido, governo, ano) |> 
-  dplyr::group_by(nm_atual_partido, governo, ano) |> 
-  dplyr::summarise(dp_total = dplyr::n()) ) |> 
-  ungroup()
-
-```
 
 
-```{r}
-media_rice <- mean(rice_partido_ano$rice_medio)
-media_rice <- format(media_rice,
-                     digits = 2,
-                     scientific = F,
-                     decimal.mark = ",")
-
-```
-
-
-Calculou-se o índice para cada votação nominal, por partido e ano. A sua média para a legislatura estudada é `r media_rice`. Mas, quando se observa a dinâmica ao longo dos quatro anos, conforme a Figura \@ref(fig:riceindex), dois comportamentos gerais merecem ser destacados. Primeiro, os partidos da oposição  parecem ser mais coesos, embora tenham menos parlamentares. Além disso, em anos eleitorais, 2016 e 2018, todos os partidos apresentam índices maiores. Essa observação pode servir como motivador para outros estudos que aprofundem o tema. Há, portanto, a possibilidade de investigar uma nova "vertente" da Teoria de Ciclos Políticos. Em anos eleitorais, os Deputados aprovam mais medidas? Votaram de forma mais coesa? Qual a temática das questões aprovadas?
-
-<br>
-
-```{r, rice_index_grafico, fig.cap= "Índice de Rice por partido e ano.", fig.id = "riceindex", results='markup'}
-knitr::include_graphics(path = here::here("figures", "dados", "indice_rice", "grafico_indice_rice.png"))
-
-
-```
 
 <br>
 
 
-```{r, results='hide'}
-load(file = here::here("tables", "tabela_rice.R"))
-
-```
-
 <br>
 
-A Tabela \@ref(tab:tabelarice) mostra que o número de partidos com representação na Câmara caiu ao longo do tempo. Além disso, as médias dos partidos de Oposição são maiores que as do Governo, como já dito, porém essa diferença não é estatisticamente significante. Por fim, em anos de eleições, a média do Índice é maior para os dois grupos.
-
-
-
-\newpage
-
-```{r , tab.cap="Estatísticas Descritivas e Teste de Média, Índice de Rice, Oposição x Governo (2015-2018)", tab.id="tabelarice", results='markup'}
-
-tbl_rice
-
-
-```
-
-
-\newpage
-
-A Figura \@ref(fig:boxplotrice) permite uma visualização melhor dos quartis informados na Tabela anterior. Note que a distância interquartil  dos partidos do Governo foi diminuindo. Isso pode ser reflexo de alguma instabilidade anterior ao processo de *Impeachment*.
-
-Alguns *outliers* também podem ser observados. Em 2015, o PP teve um valor médio de 0,59. No ano seguinte, o mesmo partido atingiu 0,86, enquanto o valor discrepante ficou por conta do AVANTE. Já em 2017, destacaram-se o PRP com um único Deputado e os quatro sem partido, atingindo um Índice de Rice igual a 1. Enquanto o AVANTE diminuiu mais ainda a sua média para 0,51. Posição essa mantinda no ano seguinte, onde o mesmo partido atingiu 0,53 pontos no índice de coesão. Destaca-se que, ao longo dos anos, esse partido contou com 3, 6, 8 e 6 Deputados, respectivamente. Ainda em 2018, tem-se o PPL e PRP, ambos com um parlamentar, com média igual a 1.
-
-<br>
-
-```{r boxplot rice, fig.cap= "Índice de Rice, Governo x Oposição, por ano", fig.id = "boxplotrice", results='markup'}
-knitr::include_graphics(path = here::here("figures", "dados", "indice_rice", "grafico_violino_rice.png"))
-  
-
-
-```
 
 
 
