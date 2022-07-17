@@ -15,7 +15,7 @@ base <- dados |>
     mutate(#ema22 = ifelse(ema22 == "Sim", 1, 0),
            oposicao = ifelse(governo == "Governo", 0, 1)) |>
     mutate(across(
-        c(pj, pf, prop, pol, cand, patrimonio),
+        c(pj, pf, prop, pol, cand, patrimonio, receita_total),
         ~ .x/1000 ))
 
 # 2.2 variaveis por grupo
