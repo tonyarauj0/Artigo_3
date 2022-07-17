@@ -13,6 +13,7 @@ base <- dados |> filter(ema22 != "Artigo 17") |>
     mutate_if(is.character, as.factor)
 
 base.1 <- dados |>
+    mutate(orientacao_ema22 = ifelse(is.na(orientacao_ema22), "AUSENTE", orientacao_ema22)) |>
     filter(ema22 == "Sim" | ema22 == "Não") |>
     mutate_if(is.character, str_to_upper) |>
     mutate_if(is.factor, str_to_upper) |>
@@ -21,7 +22,7 @@ base.1 <- dados |>
 
 # 2. Orientacao partido --------------------------------------
 (barras_orientacao <-
-     base |>
+     base.1 |>
      count(ema22, orientacao_ema22, sort = T) |>
      mutate(orientacao = tidytext::reorder_within(orientacao_ema22, n, ema22))  |>
      ggplot(aes(x = (n/sum(n))*100, y = orientacao, fill = ema22)) +
@@ -30,7 +31,7 @@ base.1 <- dados |>
      tidytext::scale_y_reordered() +
      facet_wrap(~ema22, scales = "free") +
      labs(x = "", y = "ORIENTAÇÃO PARTIDÁRIA", caption = "Nota: Valores absolutos dentro das barras.") +
-     scale_fill_manual(values = c("#A9A9A9", "firebrick", "dodgerblue4")) +
+     scale_fill_manual(values = c("firebrick", "dodgerblue4")) +
      theme_minimal() +
      theme(plot.caption.position = "plot",
            plot.caption = element_text(hjust = 0)) +
@@ -49,7 +50,7 @@ ggplot2::ggsave(
     filename = here::here("figures", "dados", "politicos", "orientacao.png"),
     plot = barras_orientacao ,
     dpi = 600,
-    width = 8,
+    width = 12,
     height = 6
 )
 
