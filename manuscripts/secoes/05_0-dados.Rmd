@@ -1,42 +1,14 @@
 # Dados
 
-Todas as informações obtidas provêm do portal de Dados Abertos da Câmara dos Deputados. Foram adquiridas todas as votações nominais em todas as votações da 55ª Legislatura que ocorreu entre 2015 e 2019, cujos Deputados que a compõem foram eleitos no pleito de 2014. Destaca-se que todas as análises são com base nessas votações. Caso algum Deputado não tenha votado nenhuma vez, ele não será contabilizado.
+Todas as informações obtidas provêm do portal de Dados Abertos da Câmara dos Deputados e do portal de Dados Abertos do Tribunal Superior Eleitoral (TSE). As variáveis referentes as características pessoais e de financiamento de campanha advém do TSE e foram montadas com base no pleito de 2014.
+
+Os votos para a EMA 22 foram obtidos conforme a data e horário em que a votação foi feita. Como já apresentado, outras EMA's trouxeram propostas de financiamento de campanha eleitoral para a discussão da PEC 182/2007. A variável dependente considerada nesta pesquisa trata apenas dos votos contra ou a favor da EMA 22. 
+
+No total, foram 459 votos. Destes, 251 foram a favor, 203 contra, e 4 abstenções, além do presidente da Câmara que não vota. A votação ocorreu no dia 26 de maio de 2015, a partir das 23h33m, sendo a última do dia. Foram considerados nas estimações apenas votos Sim e Não.
+
+É importante ressaltar que 30 Deputados não participaram dessa votação mas no dia seguinte votaram a proposta sobre a EMA 10 e EMA 32, que também tratavam do tema finaciamento de campanha.
 
 
-A Câmara dos Deputados possui 513 vagas, divididas proporcionalmente entre as unidades da federação conforme a população residente, de acordo com os dados fornecidos pelo censo do Instituto Brasileiro de Geografia e Estatística (IBGE).
-
-Por sua vez, dentro de cada Estado as vagas são preenchidas pelo sistema proporcional de votos. Assim, o número total de votos válidos, excetuando-se brancos e nulos, é dividido pelo número de vagas disponíveis, esse cálculo é chamado Quociente Eleitoral (QE). Os partidos devem ter quantidades de votos igual ou superior ao QE para ter direito uma cadeira no legislativo federal.
-
-Após isso, é feita uma divisão entre os votos totais do partido ou coligação e o QE para obter-se o Quociente Partidário (QP) e definir o número de vagas na Câmara. Depois que as vagas são alocadas em cada partido, o Deputado com mais votos assume. Um ponto importante a ser destacado é que, uma vez eleitos, os mandatos pertencem aos legisladores, portanto, quando este muda de partido o anterior perde representação.
-
-
-```{r base}
-load(here::here("data", "clean", "base_votacoes_simples.Rda"))
-base_votacoes <- base_votacoes.1
-rm(base_votacoes.1)
-
-n_votacoes = length(unique(base_votacoes$id_votacao))
-n_deputados = length(unique(base_votacoes$deputado_id))
-percentual_amais_vagas <- (n_deputados - 513)/513 *100
-percentual_amais_vagas <- round(percentual_amais_vagas, 2)
-percentual_amais_vagas <- format(percentual_amais_vagas,
-                                 decimal.mark = ",",
-                                 scientific = F)
-n_partidos <- length(unique(base_votacoes$nm_atual_partido))
-  
-```
-  
-
-Na legislatura em questão foram feitas `r n_votacoes` votações, são `r n_deputados` deputados únicos, `r percentual_amais_vagas`\% a mais que o total de vagas. Isso ocorre por conta da existencia dos suplentes. Os deputados eleitos podem se afastar do cargo por diversos motivos, concorrer a outro pleito, assumir algum ministério ou outra razão pessoal. Os suplentes são substitutos, dentro de cada partido ou coligação, e são escolhidos na ordem descrescente do número de votos que obtiveram.
-
-Quanto aos partidos políticos, `r n_partidos` obtiveram pelo menos uma vaga no período estudado. Alguns partidos mudaram de nome após 2014, esta pesquisa utiliza a nomenclatura partidária cuja última atualização foi em stemebro de 2019. A coligação vencedora das eleições presidenciais desta eleição continha os seguintes partidos: PT, MDB, PSD, PP, PL, PDT, REPUB, PROS e PC do B. Portanto, esses serão os partidos da base do governo, os demais serão tidos como oposição.
-
-Embora em 2016 a então presidente Dilma Rousseff (PT), tenha sofrido o processo de *Impeachment*, que foi aceito pelo presidente da Câmara Eduardo Cunha (MDB), sendo substituída pelo seu vice Michel Temer (MDB), não foi considerado que o PT tenha abandonado o grupo governista. Essa escolha consiste na subjetividade a respeito da data exata que a possível mudança tenha ocorrido. É possível que a relação entre os dois partidos tenha sido quebrada antes do processo ser aberto, no seu decorrer ou até que a maioria dos Deputados petistas continuasse votando conforme orientação do governo. Portanto, na falta de um marco temporal confiável, manteve-se a coligação formal vencedora das eleições.
-
-Um exercício feito e omitido desta pesquisa consistiu em calcular os pontos ideais utilizando o W-NOMINATE em dois momentos, antes e depois do rompimento do presidente da Câmara romper publicamente[^2] com o Governo. A configuração geral do mapa não sofreu grandes alterações.
-
-
-[^2]: <https://g1.globo.com/politica/noticia/2015/07/eduardo-cunha-anuncia-rompimento-politico-com-o-governo-dilma.html>
 
 
 
