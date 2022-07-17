@@ -1,0 +1,109 @@
+## Interpretação das dimensões  
+
+Uma primeira abordagem consiste em uma regressão linear onde a variável dependente é o ponto ideal estimado para cada deputado e as explicativas são seus respectivos partidos, representados por variáveis binárias. É importante relembrar que, caso o parlamentar $i$ mude de partido, ele é considerado um novo Deputado.  Foi estimada a equação para cada uma das dimensões analisadas, onde $x$ é o ponto ideal e $\omega$ o componente aleatório. Utilizaram-se também erros padrões robustos.
+
+<br>
+
+$$x_i = \gamma_0 + \gamma_1\text{Partido}_i +\omega_i$$  
+
+<br>
+
+Optou-se pela apresentação gráfica para que a visualização fosse mais direta. Os resultados para a primeira dimensão estão representados na Figura \@ref(fig:param1d), assim como as significâncias estatística e intervalos de confiança (IC) de 95%. A tabela com os resultados destas estimações está disponível no Apêndice.
+
+<br>
+
+```{r grafico estimacao d1, fig.cap="Parâmetros estimados e IC, 1ª dimensão", fig.id="param1d", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "pontos_ideais", "grafico_estimacao_d1.png"))
+
+
+```
+
+<br>
+
+Fica evidente uma separação entre o grupo formado pelo PT, PC do B e PSOL e o outro bloco de partidos como PSDB, DEM, PP, SD, CIDAD, MDB, PTB e PSC. Para os três métodos de cálculo de pontos ideais esses grupos são díspares. Dentre todos os citados, merece destaque o antagonimso PT x PSDB. Essa relação também é vista em outros trabalhos como @leoni2002ideologia e @leite2016analise, e ocorre desde a 50ª legislatura na Câmara, em 1994, quando o presidente do Executivo era Fernando Henrique Cardoso. Esta diferença entre os grupos citados é o que caracteriza a primeira dimensão, a isto será dado o nome de Ideologia.
+
+Quanto a outra dimensão, observa-se que os parlamentares cujos pontos ideais estão abaixo de zero no mapa de votações são os pertencentes aqueles partidos que estão fora da coalizão do Governo. Além disso, a deposição da Presidente do país, pertencente ao PT, e substituição pelo seu vice, do MDB, parece ter influenciado na disposição dos partidos com valores maiores que zero nessa dimensão. Em outras palavras, além de partidos coligados ao vencedor das eleições presidenciais em 2014 existem também novos aliados obtidos a partir do *Impeachment*, como o DC.
+
+<br>
+
+```{r grafico estimacao d2, fig.cap="Parâmetros estimados e IC, 2ª dimensão", fig.id="param2d", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "pontos_ideais", "grafico_estimacao_d2.png"))
+
+
+```
+
+<br>
+
+Uma vez assumida como ideologia a primeira dimensão, foram implementadas duas abordagens a fim de encontrar quais votações mais a influenciam. Para esta etapa, utilizou-se a classificação temática das votações disponibilizada pela Câmara dos Deputados.
+
+Inicialmente, implementou-se o processo descrito por @martins_rodrigo_mapeando_nodate, que consiste em dois passos a partir do método OC. Primeiro, são selecionadas as votações com menor PRE e excluídas. Assim, as votações com PRE abaixo da mediana foram descartadas. Logo, tem-se uma medida de quais votos são melhores explicados pela estimativa geral obtida.
+
+Depois, utiliza-se o fato de que o algoritmo da OC cria linhas de corte que maximizam a divisão entre votos *yea* e *nay*. Ou seja, para cada votação, o espaço é dividido por uma reta que separa quem votou contra a proposta e quem votou a favor. Sabendo disso, encontram-se as votações cujas linhas de corte são mais verticais, relacionando-se portanto a primeira dimensão.
+
+As votações nominais referentes ao mesmo objeto foram aglutinadas em um mesmo código. Assim, caso 5 votações se refiram a mesma PEC, estas são unidas em um único objeto. As votações que não possuíam classificação foram excluídas, em sua maioria são Requerimentos de Urgência. As que tiveram mais de uma classificação foram repetidas.
+
+Por exemplo, a Medida Provisória (MPV) 758/2016, possui as seguintes classificações temáticas: "Meio Ambiente e Desenvolvimento Sustentavel; Estrutura Fundiaria; Viacao, Transporte e Mobilidade". Portanto, tal MPV foi contabilizada uma vez para o tema Meio Ambiente e Desenvolvimento Sustentável, outra para Estrutura Fundiária e depois para Viação, Transporte e Mobilidade.
+
+A partir daí, de um total de 125 observações, calculou-se a frequência relativa de cada tema. A Figura \@ref(fig:octema) exibe o resultado. Os três temas que aparecem com maior frequência nas votações importantes para explicar a 1ª dimensão referem-se a Administração Pública, Finanças Públicas e Orçamento, e Trabalho e Emprego.
+
+<br>
+
+```{r grafico temas oc, fig.cap="Temas Votações Importantes para 1ª dimensão, OC.", fig.id="octema", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "temas", "grafico_oc_temas.png"))
+
+
+```
+
+<br>
+
+A segunda abordagem utiliza os resultados do método de ACP. De posse da contribuição de cada votação nominal para a Componente Principal 1 (1ª dimensão), foram selecionadas aquelas cuja contribuição foi maior que 1/Votações Nominais. A lógica por trás disso é a seguinte: se a contribuição das variáveis é uniforme, o valor esperado será 1/Votações Nominais. Variáveis com contribuição acima desse valor podem ser consideradas como importantes para o CP 1.
+
+A mesma junção feita com as votações importantes na OC foi implementada e a mesma base de classificação temática utilizada, totalizando 137 observações. Novamente, a frequência relativa está disposta graficamente na Figura \@ref(fig:acptema). Novamente, as mesmas áreas ocupam as três primeiras posições, sendo um forte indicativo de quais temáticas separam os Deputados na dimensão 1.
+
+<br>
+
+```{r grafico temas acp, fig.cap="Temas Votações Importantes para 1ª dimensão, ACP.", fig.id="acptema", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "temas", "grafico_acp_temas.png"))
+
+
+```
+
+<br>
+
+Ainda sobre o método de ACP, é possível verificar qual variável mais contribuiu para a primeira dimensão. Agregando as votações que faziam parte do mesmo escopo, tem-se a Figura \@ref(fig:acpvotacoes) complementada pela Tabela \@ref(tab:tbvotacoes). Note que as três votações mais importantes tratam de Finanças Públicas e Orçamento Público. 
+<br>
+
+```{r grafico votacoes acp, fig.cap="Dez votações que mais contribuíram para 1ª dimensão, ACP.", fig.id="acpvotacoes", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "temas", "grafico_acp_contrib_votacao.png"))
+
+
+```
+
+<br>
+
+```{r, results='hide'}
+load(file = here::here("data", "clean","tab_votacoes_importantes_acp.R"))
+```
+
+
+
+```{r , tab.cap="Dez votações que mais contribuíram para 1ª dimensão, ACP.", tab.id="tbvotacoes", results='markup'}
+
+
+tabela_votacoes_importantes_acp
+
+```
+
+<br>
+
+Com base no exposto, embora não se tenha conseguido um procedimento similar de determinar as votações importantes da primeira dimensão para o W-NOMINATE, devido a alta correlação entre os três métodos, principalmente na dimensão estudada, é possível inferir que a questão orçamentária é um forte norteador que separa a ideologia dos Deputados da 55ª legislatura.
+
+
+
+
+
