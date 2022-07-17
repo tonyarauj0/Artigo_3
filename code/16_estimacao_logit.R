@@ -394,3 +394,22 @@ DescTools::PseudoR2(logit, "McFadden")
 # Efeitos Marginais -------------------------------------------------------
 exp(logit$coefficients)
 
+# Multicolinearidade ----
+car::vif(logit) # valores abaixo de 5 - OK
+
+# Gráfico dos efeitos ----
+
+plot(effects::allEffects(logit))
+effectsc
+
+
+# Desempenho do modelo ----
+
+# Curva ROC e AUC
+library(pROC)
+auc <- pROC::roc(base$ema22, glm_probs$probs)
+pROC::plot.roc(auc, print.thres = T) # descobrimos o ponto de corte que fornece melhor soma de S e E
+
+# Usando o novo ponto de corte
+result2 <- as.factor(ifelse(glm_probs$probs > .648,1,0))
+confusionMatrix(result2, test$Survived, positive = "1")
