@@ -40,7 +40,7 @@ base <- dados |>
                                                           scientific = FALSE),
                                                    "%"
      ),
-     breaks = seq(0,20,5)
+     breaks = seq(0,25,5)
      )
 )
 
