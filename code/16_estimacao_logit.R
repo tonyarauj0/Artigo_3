@@ -321,3 +321,76 @@ ggplot2::ggsave(
     height = 6
 )
 
+
+# Probabilidade predita ---------------------------------------------------
+
+glm_probs = data.frame(probs = predict(logit, type="response"))
+
+logito <- logit$linear.predictors
+base$logito <- logito
+
+base |>
+ggplot() +
+    aes(x = logito, y = per_pj) +
+    geom_point(size = .5, alpha = .5) +
+    geom_smooth(method = "loess") +
+    theme_minimal()
+
+
+glm_pred = glm_probs |>
+    mutate(pred = ifelse(probs>.5, "Favor", "Contra"))
+
+
+
+glm_pred = cbind(base |>mutate(EMA22 = ifelse(ema22==1, "Sim","Não")) ,
+                 glm_pred)
+
+glm_pred |>
+    count(pred, ema22) |>
+    spread(ema22, n, fill = 0)
+
+glm_pred |> ggplot() +
+    aes(x = dim1, y = pred) +
+    geom_point(alpha = .5) +
+    stat_smooth(method="glm",
+                se=FALSE,
+                method.args = list(family=binomial))
+
+
+QuantPsyc::ClassLog(logit, base$ema22)
+
+
+# Teste LM ----------------------------------------------------------------
+
+anova(logit, test = "LRT")
+
+
+# Razao de Chances --------------------------------------------------------
+exp(cbind(OR = coef(logit), confint.default(logit)))
+
+library(questionr)
+questionr::odds.ratio(logit)
+
+library(sjPlot)
+sjPlot::plot_model(logit, sort.est = TRUE,
+           show.values = TRUE, value.offset = .3, vcov.type = "HC1", digits = 2,
+           big.mark = ".", decimal.mark = ",") +
+    labs(title = "") +
+    geom_hline(
+        yintercept = 1,
+        lty = 4,
+        color = "orange"
+    ) +
+    theme_minimal() +
+    scale_color_manual(values = c("firebrick", "dodgerblue4"))
+
+
+
+
+# Pseudo R2 ---------------------------------------------------------------
+DescTools::PseudoR2(logit, "McFadden")
+
+
+# Efeitos Marginais -------------------------------------------------------
+exp(logit$coefficients)
+
