@@ -112,7 +112,7 @@ base <- base |>
 )
 
 saveRDS(tabela_pessoais,
-        file = here::here("tables", "media_pessoais"))
+        file = here::here("tables", "media_pessoais.rds"))
 
 
 # 5. Financiamento -----------------------------------------------------------
@@ -135,7 +135,7 @@ saveRDS(tabela_pessoais,
 )
 
 saveRDS(tabela_financiamento,
-        file = here::here("tables", "media_financiamento"))
+        file = here::here("tables", "media_financiamento.rds"))
 
 
 # 6 Políticas -------------------------------------------------------------
@@ -159,4 +159,4 @@ saveRDS(tabela_financiamento,
 )
 
 saveRDS(tabela_politicas,
-        file = here::here("tables", "media_politicas"))
+        file = here::here("tables", "media_politicas.rds"))
