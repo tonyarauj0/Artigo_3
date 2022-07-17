@@ -1,44 +1,73 @@
-## Deputados por Partido
+## Características Pessoais
 
-O número total de parlamentares sofreu algumas alterações ao longo do período. Em 2015 foram 586, no ano seguinte 662, depois 560 e findaram a legislatura pelo menos 642 Deputados.  
-
-Apenas 7 partidos tiveram mais de 50% das vagas em toda a legislatura. Apenas o MDB tem mais de 10% dos parlamentares no período. Juntamente com PT, PSDB, PP, PSD, PL e DEM contabilizaram mais da metade de todos os Deputados na Câmara. Conforme a Figura \@ref(fig:deputadospartido), menos da metade dos partidos consegue ultrapassar a quantidade média de parlamentares. Todos os partidos da base do governo, com exceção do PC do B, ultrapassam essa medida. 
+Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo com o voto. A Figura \@ref(fig.id:ocupacao) traz as dez ocupações mais frequentes dos Deputados que votaram contra e a favor a emenda. Os percentuais indicados são sempre em relação aos 454 Deputados.
 
 <br>
 
-```{r deputadospartido, fig.cap="Número de Deputados por Partido (2015-2018).", fig.id="deputadospartido", results='markup'}
+```{r ocupacao, fig.cap="Dez principais ocupações dos votantes.", fig.id="ocupacao", results='markup'}
 
-knitr::include_graphics(path = here::here("figures", "dados", "deputados_p_partido", "grafico_dados_deputados_partido.png"))
+knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barras_ocupacao.png"))
 
 
 ```
 
 <br>
 
+Mais de 25% de quem votou a favor já definiu sua ocupação, no momento da candidatura, como Deputado. Quase 20% de quem votou contra também já era congressista. Além disso, parece haver uma variabilidade maior nas ocupações do grupo que votou Sim. Por fim, é possível que estes percentuais estejam subestimados, uma vez que um Deputado pode considerar sua ocupação principal como advogado e declarar isso à justiça eleitoral.
 
-O Governo sempre teve maioria na Câmara. A Figura \@ref(fig:barrasgoverno) agrega todos os parlamentares em cada ano da legislatura. Observa-se que a base governista sempre contou com mais de 56% dos Deputados totais de cada ano. Pode-se dizer que em todo o período essa composição foi estável.
+A Figura \@ref(fig:instrucao) exibe a escolaridade dos Deputados. Embora a maioria, nos dois grupos, tenha ensino superior completo, chama atenção que um apenas lê e escreve. 
 
 <br>
 
-```{r, barras_governo, fig.cap="Percentual de Parlamentares - Governo x Oposição (2015-2018).", fig.id="barrasgoverno", results='markup'}
+```{r, instrucao, fig.cap="Grau de instrução dos votantes.", fig.id="instrucao", results='markup'}
 
-knitr::include_graphics(path = here::here("figures", "dados", "deputados_p_partido", "grafico_dados_deputados_governo_oposicao.png"))
+knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barras_instrucao.png"))
 
 
 ```
 
 <br>
 
-Abaixo, na Figura \@ref(fig:treemap) tem-se os dez partidos com mais Deputados por ano. A base do governo tem sempre partidos maiores que a oposição. Os maiores partidos, PT, PMDB e PSDB perdem parlamentares entre o início e o final da legislatura. Por outro lado, PL e DEM cresceram bastante, com este último mais do que dobrando sua participação relativa. Porém, conforme a  Figura \@ref(fig:barrasgoverno), houve um aumento de apenas 0,28% no tamanho da Oposição entre 2015 e 2018. 
+Quanto ao estado civil, Figura \@ref(fig:civil), mais de 70% são casados. A composição em ambos os grupos é similar. Além disso, observa-se pouca representatividade racial. Conforme a Figura \@ref(fig:raca), 80% são brancos. Não há nenhum indígena ou amarelo. Segundo a  Pesquisa Nacional por Amostra de Domicílios (PNAD) de 2019, aproximadamente 42% dos brasileiros se declararam como brancos, 46% como pardos, cerca de 9% como pretos, e 1% como amarelos ou indígenas.
 
 <br>
 
   
-```{r, grafico treemap partido 15, fig.cap="Composição dez maiores partidos, por ano.", fig.id="treemap", results='markup'}
-knitr::include_graphics(path = here::here("figures", "dados", "deputados_p_partido", "grafico_dados_deputados_treemap.png"))
+```{r, estado civil, fig.cap="Estado Civil dos votantes.", fig.id="civil", results='markup'}
+knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barras_estado_civil.png"))
 
 ```
 
 
+<br>
 
+```{r, raca, fig.cap="Raça dos votantes.", fig.id="raca", results='markup'}
+knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barras_raca.png"))
+
+```
+
+<br>
+
+O mapa seguinte exibe o percentual de Deputados que votaram Sim para a EMA 22 dentro de cada UF. Os intervalos das classes são fechados à esquerda e foram construídos conforme os quintis. Dessa forma, as UF 's em vermelho são aquelas cujos deputados mais votaram contra a emenda. No MS, por exemplo, apenas 1 Deputado, dos 6, votou a favor. Logo, cerca de 83% dos Deputados Federais do estado foram contra a proposta. No Ceará, 30% votaram a favor. Por outro lado, no TO, 86% (6 de 7) votaram Sim.
+
+
+```{r, mapa, fig.cap="Percentual dos Deputados que votaram à favor, por UF.", fig.id="mapa", results='markup'}
+knitr::include_graphics(path = here::here("figures", "dados",
+                          "mapas", "mapa_uf.png"))
+
+```
+
+
+Por fim, a Tabela \@ref(tab:tabelapessoais) sintetiza o grupo de variáveis através das suas estatísticas descritivas e compara os dois grupos. A variável patrimônio, em milhares de reais, é autodeclarada. Além de alguns casos de dados ausentes existem alguns casos "curiosos". Alguns Deputados declararam ter apenas R\$1.800,00. Por outro lado, o valor máximo foi de mais de R\$ 1.000.000,00. O teste de médias apontou que os que votaram Sim tem um patrimonio maior do que os que votaram Não.
+
+Quanto a ser político, fato que ocorre quando o parlamentar declarou ser Deputado, Vereador ou Senador no momento da eleição, os grupos tem média estatisticamente igual.
+
+A idade média também foi semelhante para os dois agrupamentos. O mínimo atingido foi de 23 anos (votou contra) e o máximo 84 anos (votu a favor). A média de pessoas do Sexo Masculino foi maior para os Deputados que votaram Sim, assim como a média de pessoas autodeclaradas da raça branca. Quanto a ter ensino superior e ser casado, a média de ambos os grupos não é estatísticamente diferente.
+
+
+```{r, tab.cap="Estatísticas Descritivas e Teste de Média, carcacterísticas pessoais.", tab.id="tabelapessoais", results='markup'}
+
+read_rds(file = here::here("tables", "media_pessoais.rds"))
+
+```
 
