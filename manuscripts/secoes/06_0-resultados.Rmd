@@ -1,5 +1,5 @@
 # Resultados
 
-Nesta seção serão apresentados os pontos ideais, estimados pelos métodos descritos e suas respectivas métricas que permitem inferir o quão adequados são. Buscar-se-á determinar o número de dimensões importantes para explicar a totalidade das votações e uma interpretação para estas. Por fim, uma vez definidos o mapa de votação espacial para cada um dos métodos, será proposto um número ótimo, a partir de medidas de similaridade, de partidos políticos na legislatura em questão. 
+Nesta seção serão apresentadas as métricas do processo de ML e as variáveis que o método identificou como mais importantes. Depois serão apresentados os resultados da regressão do modelo escolhido. 
 
 
