@@ -1,12 +1,14 @@
 # Dados
 
-Todas as informações obtidas provêm do portal de Dados Abertos da Câmara dos Deputados e do portal de Dados Abertos do Tribunal Superior Eleitoral (TSE). As variáveis referentes as características pessoais e de financiamento de campanha advém do TSE e foram montadas com base no pleito de 2014.
+Todas as informações obtidas provêm do portal de Dados Abertos da Câmara dos Deputados e do portal de Dados Abertos do Tribunal Superior Eleitoral (TSE). As variáveis referentes às características pessoais e de financiamento de campanha advém do TSE e foram montadas com base no pleito de 2014.
 
 Os votos para a EMA 22 foram obtidos conforme a data e horário em que a votação foi feita. Como já apresentado, outras EMA's trouxeram propostas de financiamento de campanha eleitoral para a discussão da PEC 182/2007. A variável dependente considerada nesta pesquisa trata apenas dos votos contra ou a favor da EMA 22. 
 
-No total, foram 459 votos. Destes, 251 foram a favor, 203 contra, e 4 abstenções, além do presidente da Câmara que não vota. A votação ocorreu no dia 26 de maio de 2015, a partir das 23h33m, sendo a última do dia. Foram considerados nas estimações apenas votos Sim e Não.
+No total, foram 459 votos. Destes, 251 foram a favor, 203 contra, e 4 abstenções, além do presidente da Câmara que não votou. A votação ocorreu no dia 26 de maio de 2015, a partir das 23h33m, sendo a última do dia. Foram considerados nas estimações apenas votos Sim e Não.
 
-É importante ressaltar que 30 Deputados não participaram dessa votação mas no dia seguinte votaram a proposta sobre a EMA 10 e EMA 32, que também tratavam do tema finaciamento de campanha.
+É importante ressaltar que 30 Deputados não participaram desta votação mas no dia seguinte votaram a proposta sobre a EMA 10 e EMA 32, que também tratavam do tema finaciamento de campanha.
+
+
 
 
 
