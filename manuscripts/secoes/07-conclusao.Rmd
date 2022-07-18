@@ -1,2 +1,19 @@
 # Considerações Finais
 
+Esta pesquisa buscou averiguar quais os fatores mais relacionados com a votação dos Deputados Federais na EMA 22, no âmbito da PEC 182/2007, também conhecida como a PEC da Reforma Política. A emenda propunha manter as doações privadas, de PJ e PF, diretamente aos candidatos dos cargos eletivos.
+
+Para tanto, levantaram-se diversas variáveis explicativas ligadas às características pessoais, políticas e de financiamento de campanha dos Deputados votantes. A escolha de quais seriam utilizadas e de qual método seria adotado foi guiado por um processo de ML através do algoritmo *Elastic Net*. Uma vez que o hiperparâmetro de penalização estimado foi próximo de zero, optou-se pelo método usual de regressão *Logit*.
+
+Quanto às características pessoais destaca-se não haver indícios que o fato de já ser  político influenciou no voto. Portanto, a hipótese de que ao proibir os candidatos de acessar uma fonte de financiamento eleitoral os Deputados estabelecidos estariam criando uma barreira à entrada não se comprovou. Além disso, há um componente regional, indicado pela significância dos parâmetros das dummies de região, que pode ser mais explorado. Os políticos da região Centro-Oeste parecem ter maiores incentivos a votar contra a emenda.
+
+Já para o conjunto de variáveis políticas, observou-se uma grande importância da orientação partidária no voto. Os pertencentes a partidos que orientaram o voto Não tiveram maior probabilidade de rejeitar a proposta. Esse fato abre espaço para um novo debate sobre os condicionantes dessa orientação. Os partidos políticos que encabeçaram um voto contrário a EMA 22 o fizeram por ideologia? Como são formadas as receitas desses partidos? Quão estabelecido é este partido na conjuntura política do país?
+
+Por sua vez, a ideologia dos parlamentares mostrou-se relevante. Quanto mais a direita no mapa espacial de votações, maior a chance de aprovar a emenda. Esta variável está ligada à temática de finanças públicas e orçamento. Portanto, é possível que a motivação dos favoráveis a EMA 22 esteja ligada a um possível aumento do gasto público caso a emenda não fosse aprovada.
+
+Por fim, analisando as fontes de financiamento tem-se que quanto mais financiado por PJ o Deputado foi, maior sua chance de votar Sim. Esse comportamento parece ser coerente, afinal se estes fossem contrários estariam perdendo doações para a campanha. Porém, esperava-se que os sinais dos coeficientes estimados das demais fontes de financiamento fossem significativos e negativos, supondo que seria racional para os parlamentares bloquear uma receita de campanha da qual eles não dependem e que favorecem seus concorrentes.
+
+Vale destacar que o texto da EMA não se referia somente a doações diretas de PJ, mas de PF também. Na análise feita, assume-se que os votantes consideraram como medida principal da emenda apenas o fato ligado à PJ.
+
+Trabalhos futuros podem utilizar as demais EMA 's que tratavam sobre o financiamento de campanha na mesma PEC, outros algoritmos de ML e variáveis políticas em um maior horizonte temporal, como a média de votos recebidos em todas as eleições e o total de anos como político.
+
+
