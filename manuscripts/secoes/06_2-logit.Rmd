@@ -1,2 +1,30 @@
 ## *Logit*  
 
+Os resultados são apresentados graficamente na Figura \@ref(fig:estimacao). Dentre as características pessoais apenas aquelas que se referem às regiões, com exceção da *dummy* para o Sul foram estatisticamente significantes e positivas. Logo, exercer o papel de Deputado pelos estados das regiões Sudeste, Nordeste e Norte está relacionado a uma maior chance de votar a favor do financiamento de PJ. O destaque fica para a não significância da *dummy* Político. Isso pode indicar que ser um político estabelecido não influenciou a chance de votar contra a emenda. Logo, a hipótese de que estes buscariam criar uma barreira à entrada, via redução de recursos financeiros, não se comprova.
+
+As variáveis políticas foram as que se mostraram mais importantes. Quanto mais à direita o parlamentar, maior a chance de votar Sim. Como mostrado no Capítulo 2 esta variável está ligada a finanças públicas e orçamento. Portanto, é possível que a motivação dos favoráveis a EMA 22 esteja ligada a um possível aumento do gasto público caso a emenda não fosse aprovada. Além disso, quando o partido político posicionava-se contra a proposta a probabilidade do voto Não também aumentava. Fica portanto uma agenda aberta para novos estudos. Pode-se utilizar a média ou mediana da variável ideologia dos parlamentares para representar o partido, e, juntamente com as variáveis de receita partidária, analisar qual a motivação dos mesmos em orientar seus Deputados contra a emenda. 
+
+
+```{r estimacao, fig.cap="Coeficientes Estimados Regressão Logit", fig.id="estimacao", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "gr_estimacao.png"))
+
+```
+
+<br>
+
+Por fim, dentre as variáveis de financiamento de campanha tem-se que quanto maior o percentual de financiamento obtido por doações de PJ maior a probabilidade de votar a favor da emenda. Algo esperado, afinal os votantes que mais dependiam dessa fonte não queriam perdê-la.
+
+Surpreendentemente, os Deputados que mais financiaram suas campanhas com recursos partidários também mostraram-se favoráveis à medida, uma vez que a probabilidade de votar Sim, nesses casos, aumentava. Mais uma vez, a hipótese de que os parlamentares tentaram diminuir a concorrência pelos cargos públicos restringindo as fontes de financiamento dos futuros concorrentes não se comprova. Esperava-se que os que dependiam de outras fontes de receita, que não PJ, tivessem maior chance de votar Não.
+
+Por fim, a Figura \@ref(fig:matriz) traz a relação entre as classes previstas e as efetivas. É possível observar que 92% dos votos Sim foram previstos como tal, enquanto que para votos Não a taxa de falsos verdadeiros foi de quase 74%. O Apêndice 3A traz uma tabela com os coeficientes estimados e outras estatísticas de qualidade do modelo como o Pseudo R2 de McFadden de 0,48 e a acurácia global do modelo foi de 0,84.
+
+
+```{r matriz, fig.cap="Matriz de Confusão, Regressão Logit", fig.id="matriz", results='markup'}
+
+knitr::include_graphics(path = here::here("figures", "resultados", "matriz_confusao.png"))
+
+```
+
+
+
