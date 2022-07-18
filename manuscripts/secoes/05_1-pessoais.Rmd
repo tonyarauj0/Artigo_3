@@ -1,6 +1,6 @@
 ## Características Pessoais
 
-Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo com o voto. A Figura \@ref(fig.id:ocupacao) traz as sete ocupações mais frequentes dos Deputados que votaram contra e a favor a emenda. Os percentuais indicados são sempre em relação aos 454 Deputados.
+Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo com o voto. A Figura \@ref(fig:ocupacao) traz as sete ocupações mais frequentes dos Deputados que votaram contra e a favor a emenda. Os percentuais indicados são sempre em relação aos 454 Deputados.
 
 
 ```{r ocupacao, fig.cap="Sete principais ocupações dos votantes.", fig.id="ocupacao", results='markup', out.width="80%"}

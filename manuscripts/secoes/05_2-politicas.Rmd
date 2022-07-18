@@ -1,6 +1,6 @@
 ## Características Políticas
 
-Na Figura \@ref(fig.id:ideologia) observa-se a distribuição dos Deputados conforme a variável ideologia, construída no capítulo 2. Optou-se por manter apenas os valores obtidos pelo W-NOMINATE, por ser considerado um método mais consolidado. Além da distribuição dos dados são apresentados *box-plots* onde pode ser feita a visualização dos quartis. As médias são indicadas pelos pontos indicados nas curvas de densidade. Note que, a métrica varia de -1 até +1. Os Deputados que votaram a favor estão mais à direita no espectro ideológico.
+Na Figura \@ref(fig:ideologia) observa-se a distribuição dos Deputados conforme a variável ideologia, construída no capítulo 2. Optou-se por manter apenas os valores obtidos pelo W-NOMINATE, por ser considerado um método mais consolidado. Além da distribuição dos dados são apresentados *box-plots* onde pode ser feita a visualização dos quartis. As médias são indicadas pelos pontos indicados nas curvas de densidade. Note que, a métrica varia de -1 até +1. Os Deputados que votaram a favor estão mais à direita no espectro ideológico.
 
 
 ```{r ideologia, fig.cap="Ideologia dos votantes", fig.id="ideologia", results='markup', out.width="80%"}
