@@ -1,6 +1,6 @@
 ## *Elastic Net*
 
-A partir da combinação de hiperparametros escolheu-se aqueles que alcançavem a menor média do EQM no processo de validação cruzada. Foram utilizadas 10 combinações. A \@ref(tab:tune) exibe os resultados. A combinação que atingiu a melhor métrica possuiu uma penalização muito próxima de zero, assim como todas as demais.
+A partir da combinação de hiperparâmetros, escolheu-se aqueles que alcançavam a menor média do EQM no processo de validação cruzada. Foram utilizadas 10 combinações. A \@ref(tab:tune) exibe os resultados. A combinação que atingiu a melhor métrica possui uma penalização muito próxima de zero, assim como todas as demais.
 
 
 ```{r, tab.cap="Hiperparâmetros e média do EQM na validação cruzada", tab.id="tune", results='markup'}
@@ -10,7 +10,7 @@ readRDS(file = here::here("tables", "tabela_tunning.rds"))
 ```
 <br>
 
-Com base nisso, estimou-se o modelo na amostra de teste e extraíram-se as variáveis explicativas mais importantes a partir dos parametros estimados e padronizados. A Figura \@ref(fig:vip) mostra as quinze principais.
+Com base nisso, estimou-se o modelo na amostra de teste e extraíram-se as variáveis explicativas mais importantes a partir dos parâmetros estimados e padronizados. A Figura \@ref(fig:vip) mostra as quinze principais.
 
 ```{r, vip, fig.cap="Top 15 Variáveis mais Importantes", fig.id="vip", results='markup'}
 
@@ -21,5 +21,6 @@ knitr::include_graphics(path = here::here("figures", "resultados", "ml", "var_im
 
 <br>
 
-Portanto, como hiperparâmetro de penalização do melhor modelo é muito próximo de zero optou-se por estimar uma regressão usual. Foram consideradas algumas das variáveis apontadas pelo ML. É importante ressaltar que esta metodologia tem como maior interesse a previsão e não dá importância aos resíduos assim como os métodos mais clássicos de estimação.
+Portanto, como o hiperparâmetro de penalização do melhor modelo é muito próximo de zero optou-se por estimar uma regressão usual. Foram consideradas algumas das variáveis apontadas pelo ML. É importante ressaltar que esta metodologia tem como maior interesse a previsão e não dá importância aos resíduos assim como os métodos mais clássicos de estimação.
+
 
