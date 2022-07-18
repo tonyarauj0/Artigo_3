@@ -47,7 +47,7 @@ Quanto ao número de votos obtidos na eleição, há uma grande disparidade dent
 
 ```{r, tab.cap="Estatísticas Descritivas e Teste de Média, características políticas", tab.id="tabelapoliticas", results='markup'}
 
-read_rds(file = here::here("tables", "media_politicas.rds"))
+readRDS(file = here::here("tables", "media_politicas.rds"))
 
 ```
 

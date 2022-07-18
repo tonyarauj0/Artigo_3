@@ -38,7 +38,7 @@ Por fim, ao se analisarem as receitas como percentual do total há uma perfil be
 
 ```{r, tab.cap="Estatísticas Descritivas e Teste de Média, financiamento de campanha.", tab.id="financiamento", results='markup'}
 
-read_rds(file = here::here("tables", "media_financiamento.rds"))
+readRDS(file = here::here("tables", "media_financiamento.rds"))
 
 ```
 
