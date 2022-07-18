@@ -1,7 +1,7 @@
 # Apêndice{-}
 
 ```{r}
-readRDS(file = here::here("tables", "tabela_comparacao_log_ols.rda"))
+readRDS(file = here::here("tables", "tabela_comparacao_log_ols.rds"))
 ```
 
 
