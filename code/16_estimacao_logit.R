@@ -134,7 +134,7 @@ renomear = c("dim1" = "Ideologia",
                              part = "all"))
 
 saveRDS(tabela_comparacao_log_ols,
-        file = here::here("tables", "tabela_comparacao_log_ols.rda"))
+        file = here::here("tables", "tabela_comparacao_log_ols.rds"))
 
 # 6.1. Tabela de Estimação adc parametros --------------------------------------------------
 
@@ -236,7 +236,7 @@ output = "flextable") |>
                          part = "all"))
 
 saveRDS(tabela_comparacao_logits,
-        file = here::here("tables", "tabela_comparacao_logits.rda"))
+        file = here::here("tables", "tabela_comparacao_logits.rds"))
 
 
 
