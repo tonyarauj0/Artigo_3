@@ -21,11 +21,11 @@ Onde $EMA22$ é um vetor $n\times1$ representando o voto de cada dos $n$'s Deput
 | Superior | _Dummy_ para Deputado com grau de escolaridade de nível superior - valor 1 para candidatos com nível superior completo e valor 0 caso contrário. |
 | Casado | _Dummy_ para o parlamentar casado - valor 1 para casado e 0 para os demais. |
 | Político | _Dummy_ para Deputado cuja ocupação declarada ao TSE no pleito de 2014 - valor 1 para era deputado, senador ou vereador e valor 0 caso contrário. |
+| Região | _Dummy_ para a região a qual a UF cujo Deputado foi eleito pertence. |
 | **Políticas** |
 | Ideologia | Variável construída no capítulo anterior pelo método W-NOMINATE. |
 | Orientação Contra | _Dummy_ para o parlamentar cujo partido orientou a votar NÃO na EMA 22. |
 | Oposição | _Dummy_ para os parlamentares que não faziam parte da coligação vencedora nas eleições de 2014 - valor 1 caso pertencesse e 0 caso contrário. |
-| Região | _Dummy_ para a região a qual a UF cujo Deputado foi eleito pertence. |
 | **Financiamento** |
 | Rec.PJ | Percentual da Receita Total de campanha advinda de doações de pessoas jurídicas. |
 | Rec.PF | Percentual da Receita Total de campanha advinda de doações de pessoas físicas. |
