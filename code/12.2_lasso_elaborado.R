@@ -70,7 +70,7 @@ base_test <- testing(base_split)
 
 base_rec <- recipe(ema22 ~ ., data = base_train) |>
     step_dummy(all_nominal_predictors()) |>
-    step_log(pf, pj, prop, cand, pol, receita_total) |>
+    # step_log(pf, pj, prop, cand, pol, receita_total) |>
     step_impute_knn(all_predictors()) |>
     step_nzv(all_predictors())
 
@@ -239,12 +239,17 @@ final_reg_model_mod1 |>
         Variable == "governo_Oposição" ~ "Oposição",
         Variable == "politico" ~ "Político",
         Variable == "pf" ~ "Rec.PF(Absoluta)",
-        Variable == "per_pf" ~ "Rec.PF",
-        Variable == "per_pj" ~ "Rec.PJ",
-        Variable == "per_prop" ~ "Rec.Próprios",
+        Variable == "pj" ~ "Rec.PJ(Absoluta)",
+        Variable == "patrimonio" ~ "Patrimônio",
+        Variable == "idade" ~ "Idade",
+        Variable == "per_pf" ~ "% Rec.PF",
+        Variable == "per_pj" ~ "% Rec.PJ",
+        Variable == "per_cand" ~ "% Rec.Candidatos",
+        Variable == "cand" ~ "Rec.Candidatos(Absoluta)",
+        Variable == "per_prop" ~ "% Rec.Próprios",
         Variable == "prop" ~ "Rec.Próprios(Absoluta)",
         Variable == "casado" ~ "Casado",
-        Variable == "per_pol" ~ "Rec.Partido",
+        Variable == "per_pol" ~ "% Rec.Partido",
         Variable == "pol" ~ "Rec.Partido(Absoluta)",
         Variable == "votos" ~ "Votos"
     )) |>
