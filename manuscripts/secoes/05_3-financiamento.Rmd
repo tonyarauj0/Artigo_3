@@ -5,7 +5,7 @@ Dentre as possíveis fontes de financiamento de um candidato destacam-se os recu
 A Figura \@ref(fig:receitas) exibe as informações dos valores doados por tipo de fonte, separando aqueles que votaram contra e a favor. Novamente, em virtude da grande dispersão, foi aplicado o logaritmo. Mas, como algumas receitas eram 0, transformaram-se esses valores em 1. Dessa forma, ao passar o operador o valor resultante seria zero. Além disso, é importante salientar que, o logaritmo de valores próximos a zero é negativo. 
 
 
-```{r receitas, fig.cap="Receitas de campanha por tipo de doador", fig.id="ideologia", results='markup', out.width="80%"}
+```{r receitas, fig.cap="Receitas de campanha por tipo de doador", fig.id="receitas", results='markup', out.width="80%"}
 
 knitr::include_graphics(path = here::here("figures", "dados", "financeiros", "receita_fontes.png"))
 
