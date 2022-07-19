@@ -1,6 +1,6 @@
 ## Características Pessoais
 
-Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo com o voto. A Figura \@ref(fig:ocupacao) traz as sete ocupações mais frequentes dos Deputados que votaram contra e a favor a emenda. Os percentuais indicados são sempre em relação aos 454 Deputados.
+Buscou-se traçar um perfil dos Deputados votantes, diferenciando-os de acordo com o voto. A Figura \@ref(fig:ocupacao) traz as sete ocupações mais frequentes dos Deputados que votaram contra e a favor a emenda. Os percentuais indicados são sempre em relação aos 454 Deputados que votaram Sim ou Não.
 
 
 ```{r ocupacao, fig.cap="Sete principais ocupações dos votantes.", fig.id="ocupacao", results='markup', out.width="80%"}
@@ -47,7 +47,7 @@ knitr::include_graphics(path = here::here("figures", "dados", "pessoais", "barra
 
 <br>
 
-O mapa seguinte exibe o percentual de Deputados que votaram Sim para a EMA 22 dentro de cada UF. Os intervalos das classes são fechados à esquerda e foram construídos conforme os quintis. Dessa forma, as UF 's em vermelho são aquelas cujos deputados mais votaram contra a emenda. No MS, por exemplo, apenas 1 Deputado, dos 6, votou a favor. Logo, cerca de 83% dos Deputados Federais do estado foram contra a proposta. No Ceará, 30% votaram a favor. Por outro lado, no TO, 86% (6 de 7) votaram Sim.
+O mapa seguinte exibe o percentual de Deputados que votaram Sim para a EMA n.º 22 dentro de cada UF. Os intervalos das classes são fechados à esquerda e foram construídos conforme os quintis. Dessa forma, as UF's em vermelho são aquelas cujos deputados mais votaram contra a emenda. No MS, por exemplo, apenas 1 Deputado, dos 6, votou a favor. Logo, cerca de 83% dos Deputados Federais do estado foram contra a proposta. No Ceará, 30% votaram a favor. Por outro lado, no TO, 86% (6 de 7) votaram Sim.
 
 
 ```{r, mapa, fig.cap="Percentual dos Deputados que votaram à favor, por UF.", fig.id="mapa", results='markup'}
