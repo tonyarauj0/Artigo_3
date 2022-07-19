@@ -1,0 +1,30 @@
+# Contexto Histórico
+
+Até o pleito de 2014 eram permitidas doações de empresas as campanhas eleitorais. 
+A Lei 9.504/1997, Lei das eleições, permitia doações de PJ desde que obedecesse o limite de 2% de seu faturamento bruto do ano anterior à eleição. Também eram permitidas doações de PF limitadas a 10% dos rendimentos brutos do ano anterior à eleição. Além disso, os próprios candidatos podiam fazer doações, mas sujeitos aos teto de gastos estabelecido por seus partidos [@Lei:9.504:1997].
+
+Outro dispotivo legal importante na delimitação das regras de financiamento de campanhas era a Lei dos Partidos Políticos. Em um de seus artigos haviam as regras que regiam o fundo partidário, que era formado por recursos da União, multas e penalidades do processo eleitoral, doações de PF e PJ e outros recursos destinados por lei. 95% dos recursos eram divididos de acordo com a proporcionalidade dos votos e o restante distribuído igualmente entre os partidos [@Lei:9096:1995].
+
+Após as eleições de 2014, devido a insatisfação da população com a classe política e os escandâlos de corrupçao, o Congresso Nacional iniciou uma série propostas que mudavam algumas características do processo político no país. Dentre as medidas estavam a unificação do tempo dos mandatos ( 5 anos para todos os cargos), cláusula de barreira (restringindo o acesso ao fundo partidário e horário eleitoral gratuito), unificação das eleições na mesma data, voto facultativo, financiamento de campanhas eleitorais e outras.
+
+Essas temáticas foram apensadas a PEC 182/2007 que originalmente alterava os artigos 17, 46 e 55 da Constituição Federal, para assegurar aos partidos políticos a titularidade dos mandatos parlamentares, além de estabelecer a perda dos mandatos dos parlamentares que se desfiliassem dos partidos pelos quais forem eleitos. Era a chamada PEC da fidelidade partidária.
+
+O interesse da Câmara era tão grande que foram propostas 62 Emendas Aglutinativas, entre os dias 26 de maio de 2015 e 17 de junho do mesmo ano. Esse tipo de emenda tem como característica a junção de textos de outras emendas já apresentadas, a intençao é jujstamente dar seleridade ao processo. Esse processo foi chamado de Reforma ou Minirreforma Eleitoral.
+
+Dentre as emendas, 10 tratavam de financiamento de campanha. As de número 3, 10, 19, 22, 27, 28, 32, 34, 35 e 36. Todas foram apresentadas entre os dia 26 de maio e 27 de maio. Mas, apenas 3 foram votadas, as demais foram retiradas ou prejudicadas. Para aprovação, eram necessários 3/5 dos votos. Todas essas EMA's de financiamento de campanha foram rejeitadas.
+
+A EMA 22 foi votada no dia 26 a partir das 19H22M. A proposta dava a seguinte redação ao artigo 17 da CF: "É permitido aos partidos políticos e aos candidatos receber doações de recursos financeiros ou de bens estimáveis em dinheiro de pessoas físicas ou jurídicas, deendo a lei estabelecer os limites máximos de arrecadação e gastos de recursos para cada cargo eletivo". O texto foi de autoria do Deputado Sérgio Souza do PMDB (PR). 
+
+No dia seguinte, foram apresentadas a EMA 10, de autoria da Deputada Jandira Feghali do PC do B (RJ). Nela, ficava estabelecido que os partidos pderiam financiar as campanhas eleitorais apenas com recursos de pessoas físicas e recursos públicos. Além disso, obrigava que os partidos dessem ampla divulgação dos valores recebidos e nomes dos doadores no decorrer da campanha. Por fim, pregava que os partidos e candidatos só poderiam receber as doações e gastá-las em campanha após estabelecimento de limites, em lei, das doações de PF em valores absolutos e percentuais.
+
+A EMA 32, de autoria do Deputado Leonardo Picciani PMDB (RJ) também foi rejeitada no mesmo dia, e vedava o recebimento, por partidos políticos e candidatos, de recursos oriundos de pessoas físicas ou jurídicas. Cabia a lei estabelecer uma forma de financiamento público para cada cargo eletivo.
+
+O relator, Deputado Rodrigo Maia DEM(RJ), apresentou no dia 26 do mesmo mês um substitutivo. Assim, ele pode propor alteracoes em todo o texto do projeto. No dia 28 de maio o artigo 5º do Substitutivo foi votado e aprovado com 369 votos a favor, 39 contrários e 5 abstenções. A proposta permitia as doações de recursos financeiros de PF e PJ aos partidos políticos. Quanto as doacoes aos candidatos, ficava vedada a doação de PJ.
+
+Por fim, no dia 12 de agosto de 2015, o mesmo artigo foi votado em segundo turno e aprovado com 317 votos favoráveis, 162 contrários e 1 abstenção. As discussões não ficaram restritas ao legislativo. No dia 17 de setembro do mesmo ano, o Supremo Tribunal Federal (STF) terminou de julgar uma Ação Direta de Inconstitucionalidade (ADI) nº 4650 feita pela Ordem de Advogados do Brasil (OAB) ainda no ano de 2011 que buscava o fim das doações de PJ. A partir daí, tais doações tornaram-se ilegais.
+
+Toda a tramitção, emendar, destaques, substutivos e datas que tratram da PEC 182/2007 podem ser consultadas no site da Câmara dos Deputados^[https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=373327].
+
+
+
+
