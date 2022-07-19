@@ -92,6 +92,15 @@ theme_gtsummary_language(
 
 \newpage
 
+
+```{r child="02-contexto.Rmd"}
+
+
+```
+
+
+\newpage
+
 ```{r, eval=TRUE, child="03-revisao_bibliografica.Rmd"}
 
 
