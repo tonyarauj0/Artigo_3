@@ -1,8 +1,8 @@
 ## Financiamento de Campanha
 
-Dentre as possíveis fontes de financiamento de um candidato destacam-se os recursos doados por PJ, por PF, pelo partido político do próprio candidato, seus recursos próprios e aquelas doações de outros candidatos e comitês. Nesta última rubrica existia a possibilidade de acontecer a seguinte situação: A empresa X doa uma quantia para o candidato Y. Este repassa integralmente o recurso ao candidato Z. Porém, na prestação de contas, o recurso era tipificado como doação de PJ para o candidato Y e como doação de outro candidato ou comitê para o sujeito Z. Embora seja uma situação permitida por lei é algo que dificultava a transparência do processo. Embora os dados disponibilizados pelo TSE contenham a informação do doador primário, a empresa X no exemplo, é dificil fazer essa integrção pois muitos dados são ausentes. Outro ponto a destacar é que existem outras tipificações de receitas de campanha como doações de internet, comercialização de bens e outros. Porém, para a eleição em questão, os valores eram irrisórios.
+Dentre as possíveis fontes de financiamento de um candidato destacam-se os recursos doados por PJ, por PF, pelo partido político do próprio candidato, seus recursos próprios e aquelas doações de outros candidatos e comitês. Nesta última rubrica existia a possibilidade de acontecer a seguinte situação: A empresa X doa uma quantia para o candidato Y. Este repassa integralmente o recurso ao candidato Z. Porém, na prestação de contas, o recurso era tipificado como doação de PJ para o candidato Y e como doação de outro candidato ou comitê para o sujeito Z. Embora seja uma situação permitida por lei é algo que dificultava a transparência do processo. Embora os dados disponibilizados pelo TSE, a partir de 2014, contenham a informação do doador primário, a empresa X no exemplo, é dificil fazer essa integrção pois muitos dados são ausentes. Outro ponto a destacar é que existem outras tipificações de receitas de campanha como doações de internet, comercialização de bens e outros. Porém, para a eleição em questão, os valores eram irrisórios.
 
-A Figura \@ref(fig:receitas) exibe as informações dos valores doados por tipo de fonte, separando aqueles que votaram contra e a favor. Novamente, em virtude da grande dispersão, foi aplicado o logaritmo. Mas, como algumas receitas eram 0, transformaram-se esses valores em 1. Dessa forma, ao passar o operador o valor resultante seria zero. Além disso, é importante salientar que, o logaritmo de valores próximos a zero é negativo. 
+A Figura \@ref(fig:receitas) exibe as informações dos valores doados por tipo de fonte, relativos a receita total, separando aqueles que votaram contra e a favor.
 
 
 ```{r receitas, fig.cap="Receitas de campanha por tipo de doador", fig.id="receitas", results='markup', out.width="80%"}
@@ -14,9 +14,9 @@ knitr::include_graphics(path = here::here("figures", "dados", "financeiros", "re
 
 <br>
 
-As distribuições dos dados são bem parecidas. Apenas nas receitas advindas de recursos próprios é que o grupos parecem se diferenciar mais. Além disso, chama atenção as duas curvas de densidade em cada tipo de doação. Isso mostra que existe uma forte diferenciação entre Deputados que recebem muitas doaçoes e aqueles que recebem poucas.
+As distribuições dos dados são bem parecidas. Mas, observa-se que dentre os contrários e EMA a média de candidatos financiados por PF, recursos próprios e transferências de outros candidatos e comitês é maior.
 
-Agregando as doações e calculando a receita total de campanha tem-se a Figura \@ref(fig:receitatotal). Novamente, os valores foram transformados. Aqui fica 
+Agregando as doações e calculando a receita total de campanha tem-se a Figura \@ref(fig:receitatotal). Para melhor visualizaçao, foi aplicato o logaritmo. Embora boa parte das curvas de distribuição se sobreponham, nota-se que a média da receita total dos que votaram Sim é maior do que a média dos que votaram Não.
 
 
 ```{r, receitatotal, fig.cap="Receita Total de Campanha", fig.id="receitatotal", results='markup'}
@@ -28,11 +28,11 @@ knitr::include_graphics(path = here::here("figures", "dados", "financeiros", "re
 
 <br>
 
-A Tabela \@ref(tab:financiamento) traz as descritivas sobre as receitas totais e por fonte. As que estão em valor absoluto referem-se a milhares de reais. Quando considerados os valores monetários por tipo de receita, apenas as médias dos recursos advindos de PJ são diferentes. Nesse caso, os que votaram Sim tem uma média maior. 
+A Tabela \@ref(tab:financiamento) traz as descritivas sobre as receitas totais e por fonte. As que estão em valor absoluto referem-se a milhares de reais. Quando considerados os valores monetários por tipo de receita, apenas as médias dos recursos advindos de PJ são estatísticamente diferentes. Nesse caso, os que votaram Sim tem uma média maior. 
 
 Quanto aos valores totais, destaca-se a grande dispersão dos dados. O desvio padrão é de mais de R$995.000,00 nos dois grupos. Na média, os grupo que votou Sim tem receita maior.
 
-Por fim, ao se analisarem as receitas como percentual do total há uma perfil bem diferente de financiamento, de acordo com as médias. Os que foram a favor da emenda foram mais financiando por PJ e pelo próprio partido, enquanto aqueles que foram contra recebiam mais doações de PF, outro candidatos e comites ou pagavam com recursos próprios a campanha.
+Por fim, ao se analisarem as receitas como percentual do total há uma perfil bem diferente de financiamento, de acordo com as médias. Os que foram a favor da emenda foram mais financiando por PJ e pelo próprio partido, enquanto aqueles que foram contra recebiam mais doações de PF, outro candidatos e comites ou pagavam com recursos próprios a campanha. Fato este já observado na Figura \@ref(fig:receitas).
 
 
 
