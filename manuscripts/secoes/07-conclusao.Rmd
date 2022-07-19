@@ -1,6 +1,6 @@
 # Considerações Finais
 
-Esta pesquisa buscou averiguar quais os fatores mais relacionados com a votação dos Deputados Federais na EMA 22, no âmbito da PEC 182/2007, também conhecida como a PEC da Reforma Política. A emenda propunha manter as doações privadas, de PJ e PF, diretamente aos candidatos dos cargos eletivos.
+Esta pesquisa buscou averiguar quais os fatores mais relacionados com a votação dos Deputados Federais na EMA n.º 22, no âmbito da PEC 182/2007, também conhecida como a PEC da Minirreforma Política. A emenda propunha manter as doações privadas, de PJ e PF, diretamente aos candidatos dos cargos eletivos.
 
 Para tanto, levantaram-se diversas variáveis explicativas ligadas às características pessoais, políticas e de financiamento de campanha dos Deputados votantes. A escolha de quais seriam utilizadas e de qual método seria adotado foi guiado por um processo de ML através do algoritmo *Elastic Net*. Uma vez que o hiperparâmetro de penalização estimado foi próximo de zero, optou-se pelo método usual de regressão *Logit*.
 
@@ -14,6 +14,6 @@ Por fim, analisando as fontes de financiamento tem-se que quanto mais financiado
 
 Vale destacar que o texto da EMA não se referia somente a doações diretas de PJ, mas de PF também. Na análise feita, assume-se que os votantes consideraram como medida principal da emenda apenas o fato ligado à PJ.
 
-Trabalhos futuros podem utilizar as demais EMA 's que tratavam sobre o financiamento de campanha na mesma PEC, outros algoritmos de ML e variáveis políticas em um maior horizonte temporal, como a média de votos recebidos em todas as eleições e o total de anos como político.
+Trabalhos futuros podem utilizar as demais EMA 's que tratavam sobre o financiamento de campanha na mesma PEC, outros algoritmos de ML e variáveis políticas em um maior horizonte temporal na construção de um capital político de cada candidato, como a média de votos recebidos em todas as eleições e o total de anos como político. Finalmente, destaca-se o caráter inovador desta pesquisa, ao utilizar uma variável de ideologia montada a partir das votações nominais de cada parlamentar para explicar uma votação específica.
 
 
