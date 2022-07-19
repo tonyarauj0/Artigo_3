@@ -1,5 +1,5 @@
 # Resultados
 
-Nesta seção serão apresentadas as métricas do processo de ML e as variáveis que o método identificou como mais importantes. Depois serão apresentados os resultados da regressão do modelo escolhido. 
+Nesta seção serão apresentadas as métricas do processo de ML e as variáveis que o método identificou como mais importantes. Depois serão apresentados os resultados da regressão do método *Logit*. 
 
 
