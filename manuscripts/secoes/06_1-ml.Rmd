@@ -1,6 +1,6 @@
 ## *Elastic Net*
 
-A partir da combinação de hiperparâmetros, escolheu-se aqueles que alcançavam a menor média do EQM no processo de validação cruzada. Foram utilizadas 10 combinações. A \@ref(tab:tune) exibe os resultados. A combinação que atingiu a melhor métrica possui uma penalização muito próxima de zero, assim como todas as demais.
+A partir da combinação de hiperparâmetros, escolheu-se aqueles que alcançavam a menor média do EQM no processo de validação cruzada. Foram utilizadas 10 combinações. A Tabela \@ref(tab:tune) exibe os resultados. A combinação que atingiu a melhor métrica possui uma penalização muito próxima de zero, assim como todas as demais.
 
 
 ```{r, tab.cap="Hiperparâmetros e média do EQM na validação cruzada", tab.id="tune", results='markup'}
