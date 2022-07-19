@@ -40,7 +40,8 @@ glm_pred = cbind(base |>mutate(EMA22 = ifelse(ema22==1, "Sim","Não")) ,
 
 mat_confusao <- glm_pred |>
     count(pred, EMA22) |>
-    spread(EMA22, n, fill = 0)
+    spread(EMA22, n, fill = 0) |>
+    mutate("Não")
 
 # 2.4.1 Gráfico
 TClass <- factor(c("Não", "Não", "Sim", "Sim"))
@@ -49,7 +50,7 @@ Y      <- c(150, 53, 20, 231)
 Prop <- c("(73,9%)", "(26,1%)", "(0,08%)", "(92%)")
 df <- data.frame(TClass, PClass, Y, Prop)
 
-gr_matix_conf <- ggplot(data =  df, mapping = aes(x = TClass, y = PClass)) +
+(gr_matix_conf <- ggplot(data =  df, mapping = aes(x = TClass, y = PClass)) +
     geom_tile(aes(fill = Y), colour = "white") +
     geom_text(aes(label = paste(Y, Prop)), vjust = 1) +
     scale_fill_gradient(low="white", high="#009194") +
@@ -62,14 +63,15 @@ gr_matix_conf <- ggplot(data =  df, mapping = aes(x = TClass, y = PClass)) +
 
     )+
     labs(y = "Previsão", x = "Voto")
+)
 
 # Salvar
 ggplot2::ggsave(
     filename = here::here("figures", "resultados", "matriz_confusao.png"),
     plot = gr_matix_conf ,
     dpi = 600,
-    width = 8,
-    height = 6
+    width = 6,
+    height = 4
 )
 
 
