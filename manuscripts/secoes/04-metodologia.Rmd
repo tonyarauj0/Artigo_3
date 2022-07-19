@@ -10,7 +10,7 @@ $$EMA22 = (Pessoais) \boldsymbol \theta  +
 (Financiamento) \boldsymbol \delta + \boldsymbol u
 $$ <br>
 
-Onde $EMA22$ é um vetor $n\times1$ representando o voto de cada dos $n$'s Deputados, $\boldsymbol \theta$, $\boldsymbol \gamma$ e $\boldsymbol \delta$, são vetores dos coeficientes a serem estimados, $\boldsymbol u$ é o vetor $n\times1$ dos distúrbios Não observados e as variáeveis entre parênteses estão descritas no Quadro 3.1.
+Onde $EMA22$ é um vetor $n\times1$ representando o voto de cada dos $n$'s Deputados, $\boldsymbol \theta$, $\boldsymbol \gamma$ e $\boldsymbol \delta$, são vetores dos coeficientes a serem estimados, $\boldsymbol u$ é o vetor $n\times1$ dos distúrbios não observados e as variáeveis entre parênteses estão descritas no Quadro 3.1.
 
 <br>
 

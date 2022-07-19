@@ -12,7 +12,7 @@ knitr::include_graphics(path = here::here("figures", "dados", "ideologia", "ideo
 
 <br>
 
-Referente a orientação partidária feita para a votação, Figura \@ref(fig:orientacao), nota-se que a maioria dos parlamentares obedece. Apenas em dois casos não foi possível identificar a diretiz do partido
+Referente a orientação partidária feita para a votação, Figura \@ref(fig:orientacao), nota-se que a maioria dos parlamentares obedece. Apenas em dois casos não foi possível identificar a diretriz do partido
 
 
 ```{r, orientacao, fig.cap="Orientação Partidária x Voto.", fig.id="orientacao", results='markup'}
