@@ -15,9 +15,9 @@ base <- dados |>
 
 # 1.2 Modificar formato do banco de dados
 base.1 <- base |>
-    select(ema22, cand, pol, pf, pj, prop, receita_total, patrimonio,
+    select(ema22, per_cand, per_pol, per_pf, per_pj, per_prop, receita_total, patrimonio,
            nm_atual_partido, regiao, deputado_sigla_uf, deputado_id) |>
-    pivot_longer(cols = c(cand, pol, pf, pj, prop),
+    pivot_longer(cols = c(per_cand, per_pol, per_pf, per_pj, per_prop),
                  names_to = "tipo_receita",
                  values_to = "valor")
 
@@ -34,7 +34,7 @@ base.2 <- base.1 |>
 # 2. Boxplot fontes de financiamento --------------------------------------
 rain_height <- .1
 
-(gr_receita_fontes <- ggplot(base.2, aes(x = "", y = logvalor, fill = ema22)) +
+(gr_receita_fontes <- ggplot(base.1, aes(x = "", y = valor, fill = ema22)) +
     # clouds
     introdataviz::geom_flat_violin(trim=FALSE, alpha = 0.4,
                                    position = position_nudge(x = rain_height+.05)) +
@@ -55,8 +55,8 @@ rain_height <- .1
                            # limits = c(-2, 10)) +
     coord_flip() +
     facet_wrap(~factor(tipo_receita,
-                       levels = c("pj", "pf", "cand", "prop", "pol"),
-                       labels = c("PESSOA JURÍDICA", "PESSOA FÍSICA", "OUTROS CANDIDATOS",
+                       levels = c("per_pj", "per_pf", "per_cand", "per_prop", "per_pol"),
+                       labels = c("PJ", "PF", "OUTROS CANDIDATOS",
                                   "PROPRIOS", "PARTIDO")),
                ncol = 2) +
     # custom colours and theme
